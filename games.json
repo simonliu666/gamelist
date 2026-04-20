@@ -1,56 +1,72 @@
 [
+  // 任天堂 FC
   {
-    "name": "1080 Avalanche (USA)",
-    "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_GameCube/f564e80a931b5df936a7f52ddadf1c347c286265/Named_Boxarts/1080%20Avalanche%20(USA).png",
-    "artUrl": "https://picsum.photos/1920/1080?random=ngc1",
+    "name": "超级马里奥兄弟 3",
+    "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Super%20Mario%20Bros.%203%20(USA).png",
+    "artUrl": "https://picsum.photos/1920/1080?random=fc1",
     "developer": "Nintendo",
-    "year": "2003",
-    "platform": "NGC",
-    "genre": "体育"
+    "year": "1988",
+    "platform": "FC",
+    "genre": "平台动作"
   },
+  // 任天堂 Switch
   {
-    "name": "Animal Crossing (USA)",
-    "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_GameCube/f564e80a931b5df936a7f52ddadf1c347c286265/Named_Boxarts/Animal%20Crossing%20(USA).png",
-    "artUrl": "https://picsum.photos/1920/1080?random=ngc2",
+    "name": "塞尔达传说：王国之泪",
+    "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Switch/master/Named_Boxarts/The%20Legend%20of%20Zelda%20-%20Tears%20of%20the%20Kingdom%20(USA).png",
+    "artUrl": "https://picsum.photos/1920/1080?random=switch1",
     "developer": "Nintendo",
-    "year": "2002",
-    "platform": "NGC",
-    "genre": "模拟"
+    "year": "2023",
+    "platform": "Switch",
+    "genre": "开放世界冒险"
   },
+  // 索尼 PS5
   {
-    "name": "Sonic the Hedgehog (USA)",
-    "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_Genesis/master/Named_Boxarts/Sonic%20the%20Hedgehog%20(USA).png",
+    "name": "战神：诸神黄昏",
+    "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation_5/master/Named_Boxarts/God%20of%20War%20-%20Ragnarok%20(USA).png",
+    "artUrl": "https://picsum.photos/1920/1080?random=ps51",
+    "developer": "Santa Monica Studio",
+    "year": "2022",
+    "platform": "PS5",
+    "genre": "动作冒险"
+  },
+  // 世嘉 MD
+  {
+    "name": "刺猬索尼克 2",
+    "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_Genesis/master/Named_Boxarts/Sonic%20the%20Hedgehog%202%20(USA).png",
     "artUrl": "https://picsum.photos/1920/1080?random=md1",
-    "developer": "Sega",
-    "year": "1991",
-    "platform": "MD",
-    "genre": "动作"
-  },
-  {
-    "name": "Streets of Rage 2 (USA)",
-    "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_Genesis/master/Named_Boxarts/Streets%20of%20Rage%202%20(USA).png",
-    "artUrl": "https://picsum.photos/1920/1080?random=md2",
     "developer": "Sega",
     "year": "1992",
     "platform": "MD",
-    "genre": "清版动作"
+    "genre": "平台动作"
   },
+  // Xbox Series X/S
   {
-    "name": "Shenmue (USA)",
-    "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Dreamcast/master/Named_Boxarts/Shenmue%20(USA).png",
-    "artUrl": "https://picsum.photos/1920/1080?random=dc1",
-    "developer": "Sega",
-    "year": "2000",
-    "platform": "DC",
-    "genre": "冒险"
-  },
-  {
-    "name": "Crazy Taxi (USA)",
-    "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Dreamcast/master/Named_Boxarts/Crazy%20Taxi%20(USA).png",
-    "artUrl": "https://picsum.photos/1920/1080?random=dc2",
-    "developer": "Sega",
-    "year": "1999",
-    "platform": "DC",
+    "name": "极限竞速：地平线 5",
+    "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Microsoft_-_Xbox_Series_X_S/master/Named_Boxarts/Forza%20Horizon%205%20(USA).png",
+    "artUrl": "https://picsum.photos/1920/1080?random=xsx1",
+    "developer": "Playground Games",
+    "year": "2021",
+    "platform": "XSX",
     "genre": "竞速"
+  },
+  // 任天堂 GBA
+  {
+    "name": "口袋妖怪：红宝石",
+    "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Game_Boy_Advance/master/Named_Boxarts/Pokemon%20-%20Ruby%20Version%20(USA).png",
+    "artUrl": "https://picsum.photos/1920/1080?random=gba1",
+    "developer": "Game Freak",
+    "year": "2002",
+    "platform": "GBA",
+    "genre": "角色扮演"
+  },
+  // 街机
+  {
+    "name": "街头霸王2：四大天王",
+    "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Arcade_-_FinalBurn_Neo/master/Named_Boxarts/Street%20Fighter%20II%20-%20The%20World%20Warrior%20(USA).png",
+    "artUrl": "https://picsum.photos/1920/1080?random=arc1",
+    "developer": "Capcom",
+    "year": "1991",
+    "platform": "ARC",
+    "genre": "格斗"
   }
 ]
