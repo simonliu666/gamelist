@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>我的游戏库</title>
+<title>多平台游戏库 | NGC/MD/DC</title>
 <style>
   * {margin:0;padding:0;box-sizing:border-box;}
   body {
@@ -11,6 +11,32 @@
     background:#111;
     color:#fff;
     overflow:hidden;
+  }
+
+  /* 顶部平台标签栏 */
+  .platform-tabs {
+    position:absolute;
+    top:3%;left:5%;
+    display:flex;
+    gap:16px;
+    z-index:10;
+  }
+  .tab {
+    padding:8px 20px;
+    background:rgba(0,0,0,0.5);
+    border:1px solid #666;
+    border-radius:20px;
+    cursor:pointer;
+    transition:all 0.2s;
+    font-weight:600;
+  }
+  .tab.active {
+    background:#ff4422;
+    border-color:#ff4422;
+    box-shadow:0 0 10px rgba(255,68,34,0.5);
+  }
+  .tab:hover {
+    border-color:#fff;
   }
 
   /* 背景大图 */
@@ -71,16 +97,21 @@
 </style>
 </head>
 <body>
+  <!-- 顶部平台标签 -->
+  <div class="platform-tabs">
+    <div class="tab active" data-platform="NGC">NGC</div>
+    <div class="tab" data-platform="MD">MD</div>
+    <div class="tab" data-platform="DC">DC</div>
+  </div>
+
   <!-- 背景大图 -->
   <div class="background" id="bg"></div>
 
   <!-- 信息面板 -->
   <div class="info-panel">
-    <h1 class="game-title" id="title">TARGET: RENEGADE</h1>
+    <h1 class="game-title" id="title">请选择游戏</h1>
     <div class="game-meta" id="meta">
-      <p>Imagine Software • 1988</p>
-      <p>平台：任天堂 FC</p>
-      <p>类型：清版动作</p>
+      <p>选择底部游戏封面查看详情</p>
     </div>
   </div>
 
@@ -88,49 +119,90 @@
   <div class="game-wall" id="wall"></div>
 
 <script>
+// 全局变量：存储所有游戏数据 + 当前选中平台
+let allGames = [];
+let currentPlatform = "NGC";
+
 // 1. 读取飞书导出的游戏数据（games.json 放在同一目录）
 async function loadGames() {
-  const res = await fetch('games.json');
-  return await res.json();
+  try {
+    const res = await fetch('games.json');
+    allGames = await res.json();
+    // 加载完成后，默认显示 NGC 平台的游戏
+    renderGamesByPlatform(currentPlatform);
+  } catch (e) {
+    console.error("加载游戏数据失败：", e);
+    document.getElementById('meta').innerHTML = "<p>游戏数据加载失败，请检查 games.json 文件</p>";
+  }
 }
 
-// 2. 渲染底部游戏墙
-function renderWall(games, onSelect) {
+// 2. 根据平台筛选并渲染游戏墙
+function renderGamesByPlatform(platform) {
+  // 筛选当前平台的游戏
+  const platformGames = allGames.filter(game => game.platform === platform);
   const wall = document.getElementById('wall');
   wall.innerHTML = '';
-  games.forEach((g, i) => {
+
+  // 如果当前平台没有游戏
+  if (platformGames.length === 0) {
+    wall.innerHTML = '<div style="color:#ccc; padding:20px;">该平台暂无游戏</div>';
+    document.getElementById('title').textContent = platform;
+    document.getElementById('meta').innerHTML = '<p>暂无游戏数据</p>';
+    document.getElementById('bg').style.backgroundImage = 'url(https://picsum.photos/1920/1080?random=' + platform + ')';
+    return;
+  }
+
+  // 渲染当前平台的游戏封面
+  platformGames.forEach((g, i) => {
     const img = document.createElement('img');
     img.className = 'game-cover';
-    img.src = g.coverUrl; // 飞书里的封面图链接
+    img.src = g.coverUrl;
     img.alt = g.name;
     img.onclick = () => {
       // 移除所有选中状态
       document.querySelectorAll('.game-cover').forEach(el => el.classList.remove('active'));
       img.classList.add('active');
       // 切换背景和信息
-      onSelect(g);
+      updateDisplay(g);
     };
-    if (i === 0) img.classList.add('active'); // 默认选中第一个
+    if (i === 0) {
+      img.classList.add('active'); // 默认选中第一个
+      updateDisplay(g); // 默认显示第一个游戏的信息
+    }
     wall.appendChild(img);
   });
 }
 
 // 3. 更新背景和信息面板
 function updateDisplay(game) {
-  document.getElementById('bg').style.backgroundImage = `url(${game.artUrl})`; // 飞书里的高清艺术图
+  document.getElementById('bg').style.backgroundImage = `url(${game.artUrl || 'https://picsum.photos/1920/1080?random=' + game.name})`;
   document.getElementById('title').textContent = game.name;
   document.getElementById('meta').innerHTML = `
-    <p>${game.developer} • ${game.year}</p>
+    <p>${game.developer || '未知开发商'} • ${game.year || '未知年份'}</p>
     <p>平台：${game.platform}</p>
-    <p>类型：${game.genre}</p>
+    <p>类型：${game.genre || '未知类型'}</p>
   `;
 }
 
-// 4. 初始化
+// 4. 绑定平台标签点击事件
+function bindTabEvents() {
+  const tabs = document.querySelectorAll('.tab');
+  tabs.forEach(tab => {
+    tab.onclick = () => {
+      // 移除所有标签的选中状态
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      // 更新当前平台并渲染游戏
+      currentPlatform = tab.dataset.platform;
+      renderGamesByPlatform(currentPlatform);
+    };
+  });
+}
+
+// 5. 初始化
 (async () => {
-  const games = await loadGames();
-  renderWall(games, updateDisplay);
-  if (games.length > 0) updateDisplay(games[0]);
+  bindTabEvents(); // 先绑定标签事件
+  await loadGames(); // 再加载游戏数据
 })();
 </script>
 </body>
