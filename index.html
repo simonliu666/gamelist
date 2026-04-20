@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>多平台游戏库 | NGC/MD/DC</title>
+<title>全平台游戏库 | 主机/掌机合集</title>
 <style>
   * {margin:0;padding:0;box-sizing:border-box;}
   body {
@@ -13,22 +13,30 @@
     overflow:hidden;
   }
 
-  /* 顶部平台标签栏 */
-  .platform-tabs {
+  /* 顶部平台标签栏（适配多标签横向滚动） */
+  .platform-tabs-container {
     position:absolute;
-    top:3%;left:5%;
-    display:flex;
-    gap:16px;
+    top:3%;left:0;right:0;
+    padding:0 5%;
     z-index:10;
+    overflow-x:auto;
+    scrollbar-width:none;
+  }
+  .platform-tabs-container::-webkit-scrollbar {display:none;}
+  .platform-tabs {
+    display:flex;
+    gap:12px;
+    width:fit-content;
   }
   .tab {
-    padding:8px 20px;
+    padding:8px 18px;
     background:rgba(0,0,0,0.5);
     border:1px solid #666;
     border-radius:20px;
     cursor:pointer;
     transition:all 0.2s;
     font-weight:600;
+    white-space:nowrap; /* 防止标签文字换行 */
   }
   .tab.active {
     background:#ff4422;
@@ -94,14 +102,53 @@
     box-shadow:0 0 15px rgba(255,255,255,0.3);
     border-color:#fff;
   }
+
+  /* 适配移动端 */
+  @media (max-width: 768px) {
+    .game-title {font-size:2rem;}
+    .info-panel {max-width:80%;top:20%;}
+    .game-cover {width:100px;height:140px;}
+  }
 </style>
 </head>
 <body>
-  <!-- 顶部平台标签 -->
-  <div class="platform-tabs">
-    <div class="tab active" data-platform="NGC">NGC</div>
-    <div class="tab" data-platform="MD">MD</div>
-    <div class="tab" data-platform="DC">DC</div>
+  <!-- 顶部平台标签容器（支持横向滚动） -->
+  <div class="platform-tabs-container">
+    <div class="platform-tabs">
+      <!-- 任天堂全系列 -->
+      <div class="tab active" data-platform="FC">FC/NES</div>
+      <div class="tab" data-platform="SFC">SFC/SNES</div>
+      <div class="tab" data-platform="N64">N64</div>
+      <div class="tab" data-platform="NGC">NGC</div>
+      <div class="tab" data-platform="Wii">Wii</div>
+      <div class="tab" data-platform="WiiU">Wii U</div>
+      <div class="tab" data-platform="Switch">Switch</div>
+      <!-- 任天堂掌机 -->
+      <div class="tab" data-platform="GB">GB/GBC</div>
+      <div class="tab" data-platform="GBA">GBA</div>
+      <div class="tab" data-platform="NDS">NDS</div>
+      <div class="tab" data-platform="3DS">3DS</div>
+      <!-- 索尼全系列 -->
+      <div class="tab" data-platform="PS1">PS1</div>
+      <div class="tab" data-platform="PS2">PS2</div>
+      <div class="tab" data-platform="PS3">PS3</div>
+      <div class="tab" data-platform="PS4">PS4</div>
+      <div class="tab" data-platform="PS5">PS5</div>
+      <div class="tab" data-platform="PSP">PSP</div>
+      <div class="tab" data-platform="PSV">PS Vita</div>
+      <!-- 世嘉全系列 -->
+      <div class="tab" data-platform="MD">MD/Genesis</div>
+      <div class="tab" data-platform="SS">SS/Saturn</div>
+      <div class="tab" data-platform="DC">DC</div>
+      <!-- Xbox系列 -->
+      <div class="tab" data-platform="Xbox">Xbox</div>
+      <div class="tab" data-platform="Xbox360">Xbox 360</div>
+      <div class="tab" data-platform="XboxOne">Xbox One</div>
+      <div class="tab" data-platform="XSX">Xbox Series X/S</div>
+      <!-- 其他主流平台 -->
+      <div class="tab" data-platform="PC">PC</div>
+      <div class="tab" data-platform="ARC">街机</div>
+    </div>
   </div>
 
   <!-- 背景大图 -->
@@ -121,14 +168,14 @@
 <script>
 // 全局变量：存储所有游戏数据 + 当前选中平台
 let allGames = [];
-let currentPlatform = "NGC";
+let currentPlatform = "FC"; // 默认显示FC平台
 
-// 1. 读取飞书导出的游戏数据（games.json 放在同一目录）
+// 1. 读取游戏数据（games.json 放在同一目录）
 async function loadGames() {
   try {
     const res = await fetch('games.json');
     allGames = await res.json();
-    // 加载完成后，默认显示 NGC 平台的游戏
+    // 加载完成后，默认显示当前平台的游戏
     renderGamesByPlatform(currentPlatform);
   } catch (e) {
     console.error("加载游戏数据失败：", e);
@@ -145,10 +192,11 @@ function renderGamesByPlatform(platform) {
 
   // 如果当前平台没有游戏
   if (platformGames.length === 0) {
-    wall.innerHTML = '<div style="color:#ccc; padding:20px;">该平台暂无游戏</div>';
+    wall.innerHTML = `<div style="color:#ccc; padding:20px;">${platform} 平台暂无游戏</div>`;
     document.getElementById('title').textContent = platform;
-    document.getElementById('meta').innerHTML = '<p>暂无游戏数据</p>';
-    document.getElementById('bg').style.backgroundImage = 'url(https://picsum.photos/1920/1080?random=' + platform + ')';
+    document.getElementById('meta').innerHTML = '<p>暂无游戏数据，可在 games.json 中添加</p>';
+    // 为不同平台生成专属随机背景
+    document.getElementById('bg').style.backgroundImage = `url(https://picsum.photos/1920/1080?random=${platform})`;
     return;
   }
 
@@ -158,6 +206,10 @@ function renderGamesByPlatform(platform) {
     img.className = 'game-cover';
     img.src = g.coverUrl;
     img.alt = g.name;
+    // 图片加载失败时显示默认封面
+    img.onerror = () => {
+      img.src = `https://picsum.photos/120/160?random=${g.name}`;
+    };
     img.onclick = () => {
       // 移除所有选中状态
       document.querySelectorAll('.game-cover').forEach(el => el.classList.remove('active'));
@@ -175,7 +227,7 @@ function renderGamesByPlatform(platform) {
 
 // 3. 更新背景和信息面板
 function updateDisplay(game) {
-  document.getElementById('bg').style.backgroundImage = `url(${game.artUrl || 'https://picsum.photos/1920/1080?random=' + game.name})`;
+  document.getElementById('bg').style.backgroundImage = `url(${game.artUrl || `https://picsum.photos/1920/1080?random=${game.name}`})`;
   document.getElementById('title').textContent = game.name;
   document.getElementById('meta').innerHTML = `
     <p>${game.developer || '未知开发商'} • ${game.year || '未知年份'}</p>
