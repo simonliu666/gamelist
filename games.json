@@ -7,7 +7,7 @@
     "developer": "Nintendo",
     "genre": "平台跳跃",
     "desc": "横版游戏的开山鼻祖，陪伴无数人童年的经典。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Super%20Mario%20Bros.%20(USA).png",
+    "cover": "https://picsum.photos/id/21/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
   },
@@ -19,7 +19,7 @@
     "developer": "Nintendo",
     "genre": "动作冒险",
     "desc": "开启史诗级冒险的系列原点。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/The%20Legend%20of%20Zelda%20(USA).png",
+    "cover": "https://picsum.photos/id/22/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
   },
@@ -31,7 +31,7 @@
     "developer": "Konami",
     "genre": "射击",
     "desc": "上上下下左右左右BA，童年最经典的双人射击。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Contra%20(USA).png",
+    "cover": "https://picsum.photos/id/23/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
   },
@@ -43,7 +43,7 @@
     "developer": "Konami",
     "genre": "射击",
     "desc": "驾驶战车救人质，FC经典射击。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Jackal%20(USA).png",
+    "cover": "https://picsum.photos/id/24/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3"
   },
@@ -55,7 +55,7 @@
     "developer": "Konami",
     "genre": "动作",
     "desc": "一把小刀闯天下，经典潜入动作游戏。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Rush%27n%20Attack%20(USA).png",
+    "cover": "https://picsum.photos/id/25/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3"
   },
@@ -67,7 +67,7 @@
     "developer": "Tecmo",
     "genre": "动作",
     "desc": "FC最强动作游戏，剧情与操作双巅峰。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Ninja%20Gaiden%20(USA).png",
+    "cover": "https://picsum.photos/id/26/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3"
   },
@@ -79,7 +79,7 @@
     "developer": "Capcom",
     "genre": "平台",
     "desc": "可爱又好玩的双人合作神作。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Chip%20'n%20Dale%20Rescue%20Rangers%20(USA).png",
+    "cover": "https://picsum.photos/id/27/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3"
   },
@@ -91,7 +91,7 @@
     "developer": "Capcom",
     "genre": "格斗",
     "desc": "真正让格斗游戏风靡全球的神作。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Street%20Fighter%20II%20(USA).png",
+    "cover": "https://picsum.photos/id/28/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
   },
@@ -103,7 +103,7 @@
     "developer": "Nintendo",
     "genre": "平台",
     "desc": "SFC首发护航大作，Yoshi首次登场。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Super%20Mario%20World%20(USA).png",
+    "cover": "https://picsum.photos/id/29/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3"
   },
@@ -115,7 +115,7 @@
     "developer": "Nintendo",
     "genre": "动作冒险",
     "desc": "2D塞尔达的巅峰，后世无数RPG的模板。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/The%20Legend%20of%20Zelda%20-%20A%20Link%20to%20the%20Past%20(USA).png",
+    "cover": "https://picsum.photos/id/30/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3"
   },
@@ -127,7 +127,7 @@
     "developer": "Square",
     "genre": "RPG",
     "desc": "SFC时代最强JRPG，剧情封神。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Final%20Fantasy%20III%20(USA).png",
+    "cover": "https://picsum.photos/id/31/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3"
   },
@@ -139,7 +139,7 @@
     "developer": "Square",
     "genre": "ARPG",
     "desc": "多主角、多结局，SFC画质天花板。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Super_Nintendo_Entertainment_System/master/Named_Boxarts/Seiken%20Densetsu%203%20(J).png",
+    "cover": "https://picsum.photos/id/32/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3"
   },
@@ -151,7 +151,7 @@
     "developer": "Nintendo",
     "genre": "3D平台",
     "desc": "3D游戏的教科书，定义整个时代。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/Super%20Mario%2064%20(USA).png",
+    "cover": "https://picsum.photos/id/33/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-13.mp3"
   },
@@ -163,7 +163,7 @@
     "developer": "Nintendo",
     "genre": "动作冒险",
     "desc": "史上第一个满分神作，3D冒险的顶点。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/The%20Legend%20of%20Zelda%20-%20Ocarina%20of%20Time%20(USA).png",
+    "cover": "https://picsum.photos/id/34/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3"
   },
@@ -175,7 +175,7 @@
     "developer": "Hal Laboratory",
     "genre": "格斗聚会",
     "desc": "全明星梦幻共演，乱斗系列起点。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_64/master/Named_Boxarts/Super%20Smash%20Bros.%20(USA).png",
+    "cover": "https://picsum.photos/id/35/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-15.mp3"
   },
@@ -187,7 +187,7 @@
     "developer": "Nintendo",
     "genre": "3D平台",
     "desc": "NGC经典，水枪与海岛冒险。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_GameCube/master/Named_Boxarts/Super%20Mario%20Sunshine%20(USA).png",
+    "cover": "https://picsum.photos/id/36/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-16.mp3"
   },
@@ -199,7 +199,7 @@
     "developer": "Sora Ltd.",
     "genre": "格斗聚会",
     "desc": "NGC神作，乱斗系列口碑巅峰。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_GameCube/master/Named_Boxarts/Super%20Smash%20Bros.%20Melee%20(USA).png",
+    "cover": "https://picsum.photos/id/37/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-17.mp3"
   },
@@ -211,7 +211,7 @@
     "developer": "Nintendo",
     "genre": "动作冒险",
     "desc": "卡通渲染艺术巅峰，大海大冒险。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_GameCube/master/Named_Boxarts/The%20Legend%20of%20Zelda%20-%20The%20Wind%20Waker%20(USA).png",
+    "cover": "https://picsum.photos/id/38/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-18.mp3"
   },
@@ -223,7 +223,7 @@
     "developer": "Capcom",
     "genre": "生存恐怖",
     "desc": "越肩视角射击的开创者。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_GameCube/master/Named_Boxarts/Resident%20Evil%204%20(USA).png",
+    "cover": "https://picsum.photos/id/39/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-19.mp3"
   },
@@ -235,7 +235,7 @@
     "developer": "Nintendo",
     "genre": "3D平台",
     "desc": "太空重力神作，创意突破天际。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Wii/master/Named_Boxarts/Super%20Mario%20Galaxy%20(USA).png",
+    "cover": "https://picsum.photos/id/40/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-20.mp3"
   },
@@ -247,7 +247,7 @@
     "developer": "Nintendo",
     "genre": "动作冒险",
     "desc": "暗黑童话风格，塞尔达史诗巨作。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Wii/master/Named_Boxarts/The%20Legend%20of%20Zelda%20-%20Twilight%20Princess%20(USA).png",
+    "cover": "https://picsum.photos/id/41/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-21.mp3"
   },
@@ -259,7 +259,7 @@
     "developer": "Nintendo",
     "genre": "竞速",
     "desc": "合家欢赛车，销量千万级神作。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Wii/master/Named_Boxarts/Mario%20Kart%20Wii%20(USA).png",
+    "cover": "https://picsum.photos/id/42/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-22.mp3"
   },
@@ -271,7 +271,7 @@
     "developer": "Sega",
     "genre": "平台",
     "desc": "世嘉的吉祥物，高速平台游戏开创者。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_Genesis/master/Named_Boxarts/Sonic%20the%20Hedgehog%20(USA).png",
+    "cover": "https://picsum.photos/id/43/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-23.mp3"
   },
@@ -283,7 +283,7 @@
     "developer": "Sega",
     "genre": "清版动作",
     "desc": "MD最强横版过关，音乐与手感双绝。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_Genesis/master/Named_Boxarts/Streets%20of%20Rage%202%20(USA).png",
+    "cover": "https://picsum.photos/id/44/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-24.mp3"
   },
@@ -295,7 +295,7 @@
     "developer": "Sega",
     "genre": "RPG",
     "desc": "MD最强RPG，科幻史诗。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_Genesis/master/Named_Boxarts/Phantasy%20Star%20IV%20(USA).png",
+    "cover": "https://picsum.photos/id/45/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-25.mp3"
   },
@@ -307,7 +307,7 @@
     "developer": "Koei",
     "genre": "模拟经营",
     "desc": "无数人的航海启蒙，自由探索神作。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_Genesis/master/Named_Boxarts/Uncharted%20Waters%20-%20New%20Horizons%20(USA).png",
+    "cover": "https://picsum.photos/id/46/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-26.mp3"
   },
@@ -319,7 +319,7 @@
     "developer": "Sega",
     "genre": "开放世界",
     "desc": "开放世界游戏的鼻祖，耗资巨大的传奇。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Dreamcast/master/Named_Boxarts/Shenmue%20(USA).png",
+    "cover": "https://picsum.photos/id/47/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-27.mp3"
   },
@@ -331,7 +331,7 @@
     "developer": "Sega",
     "genre": "竞速",
     "desc": "街机狂飙，爽快拉客。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Dreamcast/master/Named_Boxarts/Crazy%20Taxi%20(USA).png",
+    "cover": "https://picsum.photos/id/48/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-28.mp3"
   },
@@ -343,7 +343,7 @@
     "developer": "Sega",
     "genre": "3D平台",
     "desc": "索尼克首次3D化，DC代表作。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Dreamcast/master/Named_Boxarts/Sonic%20Adventure%20(USA).png",
+    "cover": "https://picsum.photos/id/49/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-29.mp3"
   },
@@ -355,7 +355,7 @@
     "developer": "Capcom",
     "genre": "生存恐怖",
     "desc": "追踪者压迫感拉满的经典。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Resident%20Evil%203%20-%20Nemesis%20(USA).png",
+    "cover": "https://picsum.photos/id/50/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-30.mp3"
   },
@@ -367,7 +367,7 @@
     "developer": "Square",
     "genre": "RPG",
     "desc": "改变游戏史的JRPG传奇。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Final%20Fantasy%20VII%20(USA).png",
+    "cover": "https://picsum.photos/id/51/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-31.mp3"
   },
@@ -379,7 +379,7 @@
     "developer": "Team Silent",
     "genre": "恐怖",
     "desc": "心理恐怖游戏的顶点。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Silent%20Hill%20(USA).png",
+    "cover": "https://picsum.photos/id/52/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-32.mp3"
   },
@@ -391,7 +391,7 @@
     "developer": "Naughty Dog",
     "genre": "平台",
     "desc": "PS1吉祥物，顽皮狗成名作。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Crash%20Bandicoot%20(USA).png",
+    "cover": "https://picsum.photos/id/53/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-33.mp3"
   },
@@ -403,7 +403,7 @@
     "developer": "Insomniac",
     "genre": "平台",
     "desc": "梦幻童话风格3D平台。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation/master/Named_Boxarts/Spyro%20the%20Dragon%20(USA).png",
+    "cover": "https://picsum.photos/id/54/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-34.mp3"
   },
@@ -415,7 +415,7 @@
     "developer": "SCE Santa Monica",
     "genre": "动作",
     "desc": "暴力美学与希腊神话的巅峰。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation_2/master/Named_Boxarts/God%20of%20War%20(USA).png",
+    "cover": "https://picsum.photos/id/55/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-35.mp3"
   },
@@ -427,7 +427,7 @@
     "developer": "Capcom",
     "genre": "生存恐怖",
     "desc": "PS2必玩神作。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation_2/master/Named_Boxarts/Resident%20Evil%204%20(USA).png",
+    "cover": "https://picsum.photos/id/56/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-36.mp3"
   },
@@ -439,7 +439,7 @@
     "developer": "Square",
     "genre": "RPG",
     "desc": "剧情与音乐封神的RPG。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation_2/master/Named_Boxarts/Final%20Fantasy%20X%20(USA).png",
+    "cover": "https://picsum.photos/id/57/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-37.mp3"
   },
@@ -451,7 +451,7 @@
     "developer": "SCE Japan Studio",
     "genre": "动作冒险",
     "desc": "艺术游戏的代名词，孤独与史诗感。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation_2/master/Named_Boxarts/Shadow%20of%20the%20Colossus%20(USA).png",
+    "cover": "https://picsum.photos/id/58/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-38.mp3"
   },
@@ -463,7 +463,7 @@
     "developer": "Capcom",
     "genre": "动作狩猎",
     "desc": "PSP国民级联机游戏。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation_Portable/master/Named_Boxarts/Monster%20Hunter%20Portable%203rd%20(J).png",
+    "cover": "https://picsum.photos/id/59/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-39.mp3"
   },
@@ -475,7 +475,7 @@
     "developer": "Ready at Dawn",
     "genre": "动作",
     "desc": "PSP最强画质动作游戏。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation_Portable/master/Named_Boxarts/God%20of%20War%20-%20Ghost%20of%20Sparta%20(USA).png",
+    "cover": "https://picsum.photos/id/60/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-40.mp3"
   },
@@ -487,7 +487,7 @@
     "developer": "SNK",
     "genre": "格斗",
     "desc": "街机厅最火的格斗游戏。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Neo_Geo/master/Named_Boxarts/The%20King%20of%20Fighters%20'%2097%20(World).png",
+    "cover": "https://picsum.photos/id/61/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-41.mp3"
   },
@@ -499,7 +499,7 @@
     "developer": "Capcom",
     "genre": "格斗",
     "desc": "街机格斗的王者。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Arcade/master/Named_Boxarts/Street%20Fighter%20II%20-%20Champion%20Edition%20(World).png",
+    "cover": "https://picsum.photos/id/62/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-42.mp3"
   },
@@ -511,7 +511,7 @@
     "developer": "Capcom",
     "genre": "清版动作",
     "desc": "街机厅必玩的四人闯关神作。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Arcade/master/Named_Boxarts/Cadillacs%20and%20Dinosaurs%20(World).png",
+    "cover": "https://picsum.photos/id/63/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-43.mp3"
   },
@@ -523,7 +523,7 @@
     "developer": "IGS",
     "genre": "清版动作",
     "desc": "国产街机之光，三国题材经典。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Arcade/master/Named_Boxarts/Knights%20of%20Valor%20(Asia).png",
+    "cover": "https://picsum.photos/id/64/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-44.mp3"
   },
@@ -535,7 +535,7 @@
     "developer": "SNK",
     "genre": "射击",
     "desc": "卡通画风+爽快射击，街机经典。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Arcade/master/Named_Boxarts/Metal%20Slug%20(World).png",
+    "cover": "https://picsum.photos/id/65/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-45.mp3"
   },
@@ -547,7 +547,7 @@
     "developer": "Nintendo",
     "genre": "开放世界",
     "desc": "重新定义开放世界的神作。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Switch/master/Named_Boxarts/The%20Legend%20of%20Zelda%20-%20Breath%20of%20the%20Wild%20(USA).png",
+    "cover": "https://picsum.photos/id/66/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-46.mp3"
   },
@@ -559,7 +559,7 @@
     "developer": "Nintendo",
     "genre": "3D平台",
     "desc": "创意满点，帽子附身的环球冒险。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Switch/master/Named_Boxarts/Super%20Mario%20Odyssey%20(USA).png",
+    "cover": "https://picsum.photos/id/67/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-47.mp3"
   },
@@ -571,7 +571,7 @@
     "developer": "Sora Ltd.",
     "genre": "格斗聚会",
     "desc": "全明星集结，史上最豪华乱斗。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Switch/master/Named_Boxarts/Super%20Smash%20Bros.%20Ultimate%20(USA).png",
+    "cover": "https://picsum.photos/id/68/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-48.mp3"
   },
@@ -583,7 +583,7 @@
     "developer": "Nintendo",
     "genre": "竞速",
     "desc": "Switch销量最高的合家欢赛车。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Switch/master/Named_Boxarts/Mario%20Kart%208%20Deluxe%20(USA).png",
+    "cover": "https://picsum.photos/id/69/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-49.mp3"
   },
@@ -595,7 +595,7 @@
     "developer": "Nintendo",
     "genre": "模拟生活",
     "desc": "治愈全世界的无人岛生活。",
-    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Switch/master/Named_Boxarts/Animal%20Crossing%20-%20New%20Horizons%20(USA).png",
+    "cover": "https://picsum.photos/id/70/120/160",
     "video": "https://player.vimeo.com/video/123456789",
     "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-50.mp3"
   }
