@@ -1,40 +1,408 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>全平台游戏库 | 主机/掌机合集</title>
+<title>全平台复古游戏库</title>
 <style>
-  * {margin:0;padding:0;box-sizing:border-box;}
-  body {
-    font-family:system-ui,-apple-system,sans-serif;
-    background:#111;
-    color:#fff;
-    overflow:hidden;
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:system-ui,sans-serif;background:#111;color:#fff;overflow:hidden}
+
+  .search-bar{
+    position:fixed;top:10px;left:3%;right:3%;z-index:999;
+  }
+  #searchInput{
+    width:100%;padding:10px 16px;border-radius:20px;
+    background:#222;border:none;outline:none;
+    color:#fff;font-size:15px;
   }
 
-  /* 顶部平台标签栏（适配多标签横向滚动） */
-  .platform-tabs-container {
+  .platform-bar{
+    position:fixed;top:60px;left:3%;right:3%;
+    display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;
+    padding-bottom:6px;z-index:998
+  }
+  .platform-bar::-webkit-scrollbar{display:none}
+  .plat-tab{
+    padding:8px 16px;background:#222;border:1px solid #666;
+    border-radius:20px;white-space:nowrap;cursor:pointer;flex-shrink:0
+  }
+  .plat-tab.active{
+    background:var(--accent);border-color:var(--accent)
+  }
+
+  .view-bar{
+    position:fixed;top:105px;left:3%;right:3%;
+    display:flex;gap:10px;z-index:997
+  }
+  .view-tab{
+    padding:8px 18px;background:#333;border:none;
+    border-radius:20px;color:#fff;cursor:pointer
+  }
+  .view-tab.active{background:var(--accent)}
+
+  .platform-bg{
+    position:fixed;inset:0;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    filter:brightness(0.25) saturate(1.2);
+    z-index:-2;
+    transition:background-image 0.6s ease;
+  }
+  .overlay{
+    position:fixed;inset:0;background:#000a;z-index:-1
+  }
+
+  .wall-view{display:none}
+  .game-wall{
+    position:fixed;bottom:5%;left:3%;right:3%;
+    display:flex;gap:10px;overflow-x:auto;scrollbar-width:none
+  }
+  .game-wall::-webkit-scrollbar{display:none}
+  .cover{
+    width:120px;height:160px;object-fit:cover;
+    border-radius:8px;cursor:pointer;transition:.2s
+  }
+  .cover:hover{transform:scale(1.08);box-shadow:0 0 12px #fff8}
+
+  .timeline-view{display:none}
+  .timeline-view{
+    position:fixed;top:160px;left:3%;right:3%;bottom:3%;
+    overflow-y:auto;scrollbar-width:none
+  }
+  .timeline{
+    position:relative;
+    padding-left:90px;
+    padding-bottom:60px;
+    max-width:1000px;margin:0 auto
+  }
+  .timeline::before{
+    content:'';position:absolute;
+    left:70px;top:0;bottom:0;
+    width:2px;background:#777;opacity:0.5;
+  }
+  .year-group{
+    position:relative;margin-bottom:40px;
+  }
+  .year-mark{display:none;}
+  .year-text{
     position:absolute;
-    top:3%;left:0;right:0;
-    padding:0 5%;
-    z-index:10;
-    overflow-x:auto;
-    scrollbar-width:none;
+    right:25px;
+    top:0;
+    font-size:20px;font-weight:bold;color:#fff;
+    line-height:32px;
+    text-align:right;
+    width:60px;
   }
-  .platform-tabs-container::-webkit-scrollbar {display:none;}
-  .platform-tabs {
-    display:flex;
-    gap:12px;
-    width:fit-content;
+  .year-games{
+    display:flex;flex-wrap:wrap;gap:12px;
+    margin-top:0;
+    padding-left:15px;
   }
-  .tab {
-    padding:8px 18px;
-    background:rgba(0,0,0,0.5);
-    border:1px solid #666;
-    border-radius:20px;
-    cursor:pointer;
-    transition:all 0.2s;
+  .time-game{
+    width:100px;text-align:center;cursor:pointer
+  }
+  .time-cover{
+    width:100px;height:140px;object-fit:cover;border-radius:6px
+  }
+  .time-name{
+    font-size:12px;margin-top:4px;color:#eee;line-height:1.2;
+  }
+  .time-platform{
+    display:inline-block;
+    margin-top:4px;
+    padding:2px 6px;
+    border-radius:6px;
+    font-size:10px;
+    color:#fff;
+  }
+
+  .grid-view{display:none}
+  .grid-view{
+    position:fixed;top:160px;left:3%;right:3%;bottom:3%;
+    overflow-y:auto;scrollbar-width:none
+  }
+  .grid-container{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+    gap:16px;padding-bottom:40px
+  }
+  .grid-card{
+    border-radius:10px;background:#181818;overflow:hidden;
+    cursor:pointer;transition:.2s
+  }
+  .grid-card:hover{transform:scale(1.03)}
+  .grid-cover{width:100%;aspect-ratio:2/3;object-fit:cover}
+  .grid-info{padding:8px}
+  .grid-name-cn{font-size:14px;font-weight:500}
+  .grid-name-en{font-size:12px;color:#aaa}
+
+  .info-panel{
+    position:fixed;right:-600px;top:0;bottom:0;
+    width:min(90vw,580px);background:#141414;
+    box-shadow:-4px 0 20px #0006;z-index:1000;
+    padding:30px;overflow-y:auto;scrollbar-width:none;
+    transition:right 0.3s ease-out;
+    touch-action:pan-x;
+  }
+  .info-panel.show{right:0}
+  .info-panel::-webkit-scrollbar{display:none}
+
+  .info-close{
+    position:absolute;top:20px;right:20px;
+    width:36px;height:36px;border-radius:50%;
+    background:#222;border:none;color:#fff;font-size:18px;
+    cursor:pointer
+  }
+  .info-title-cn{font-size:24px;margin-bottom:6px}
+  .info-title-en{font-size:16px;color:#aaa;margin-bottom:20px}
+  .info-row{margin:10px 0;color:#ccc}
+  .info-label{color:#999;margin-right:8px}
+
+  .video-player{
+    width:100%;aspect-ratio:16/9;background:#000;
+    border-radius:8px;margin:20px 0;overflow:hidden
+  }
+  .video-player iframe{width:100%;height:100%;border:none}
+  .audio-player{width:100%;margin:20px 0}
+  audio{width:100%}
+</style>
+
+<body>
+<div class="platform-bg" id="platformBg"></div>
+<div class="overlay"></div>
+
+<div class="search-bar">
+  <input id="searchInput" placeholder="搜索游戏中文名、英文名..." type="text">
+</div>
+
+<div class="platform-bar">
+  <div class="plat-tab active" data-platform="all">全部平台</div>
+  <div class="plat-tab" data-platform="FC">FC</div>
+  <div class="plat-tab" data-platform="SFC">SFC</div>
+  <div class="plat-tab" data-platform="N64">N64</div>
+  <div class="plat-tab" data-platform="NGC">NGC</div>
+  <div class="plat-tab" data-platform="Wii">Wii</div>
+  <div class="plat-tab" data-platform="Switch">Switch</div>
+  <div class="plat-tab" data-platform="PS1">PS1</div>
+  <div class="plat-tab" data-platform="PS2">PS2</div>
+  <div class="plat-tab" data-platform="PSP">PSP</div>
+  <div class="plat-tab" data-platform="MD">MD</div>
+  <div class="plat-tab" data-platform="DC">DC</div>
+  <div class="plat-tab" data-platform="ARC">街机</div>
+</div>
+
+<div class="view-bar">
+  <button class="view-tab active" data-view="wall">平台视图</button>
+  <button class="view-tab" data-view="timeline">时间线</button>
+  <button class="view-tab" data-view="grid">网格平铺</button>
+</div>
+
+<div class="wall-view" id="wallView">
+  <div class="game-wall" id="wall"></div>
+</div>
+
+<div class="timeline-view" id="timeView">
+  <div class="timeline" id="timeline"></div>
+</div>
+
+<div class="grid-view" id="gridView">
+  <div class="grid-container" id="grid"></div>
+</div>
+
+<div class="info-panel" id="infoPanel">
+  <button class="info-close" onclick="closeInfo()">×</button>
+  <div class="info-title-cn" id="infoCn"></div>
+  <div class="info-title-en" id="infoEn"></div>
+  <div class="info-row"><span class="info-label">年份：</span><span id="infoYear"></span></div>
+  <div class="info-row"><span class="info-label">平台：</span><span id="infoPlat"></span></div>
+  <div class="info-row"><span class="info-label">开发商：</span><span id="infoDev"></span></div>
+  <div class="info-row"><span class="info-label">类型：</span><span id="infoGenre"></span></div>
+  <div class="info-row"><span class="info-label">简介：</span><span id="infoDesc"></span></div>
+
+  <h3 style="margin:24px 0 10px;font-size:16px">游戏视频</h3>
+  <div class="video-player" id="videoPlayer"></div>
+  <h3 style="margin:24px 0 10px;font-size:16px">游戏音乐</h3>
+  <div class="audio-player" id="audioPlayer"></div>
+</div>
+
+<script>
+const platformBackground = {
+  all:    "https://i.imgur.com/T5nDgZK.jpg",
+  FC:     "https://i.imgur.com/FvH9XpQ.jpg",
+  SFC:    "https://i.imgur.com/KzH5R9j.jpg",
+  N64:    "https://i.imgur.com/BzJGFQH.jpg",
+  NGC:    "https://i.imgur.com/JqV8nAr.jpg",
+  Wii:    "https://i.imgur.com/2i8aXbN.jpg",
+  Switch: "https://i.imgur.com/e8XhQ9f.jpg",
+  PS1:    "https://i.imgur.com/3BdCj7A.jpg",
+  PS2:    "https://i.imgur.com/iQaYagb.jpg",
+  PSP:    "https://i.imgur.com/4sF7vKz.jpg",
+  MD:     "https://i.imgur.com/8zFg5wS.jpg",
+  DC:     "https://i.imgur.com/7vZJx1G.jpg",
+  ARC:    "https://i.imgur.com/4wZJQaX.jpg"
+};
+
+const platformColor = {
+  FC:'#e60012',SFC:'#e60012',N64:'#e60012',NGC:'#e60012',Wii:'#e60012',Switch:'#e60012',
+  PS1:'#003791',PS2:'#003791',PSP:'#003791',
+  MD:'#001ea8',DC:'#001ea8',
+  ARC:'#777',
+  all:'#ff4422'
+};
+
+let games = [];
+let currentPlat = 'all';
+let currentView = 'wall';
+let keyword = '';
+
+// 从 games.json 加载数据
+async function loadGames() {
+  try {
+    const res = await fetch('./games.json');
+    games = await res.json();
+    refresh();
+  } catch (err) {
+    console.error('加载游戏数据失败', err);
+  }
+}
+
+const searchInput = document.getElementById('searchInput');
+searchInput.addEventListener('input', e=>{
+  keyword = e.target.value.trim().toLowerCase();
+  refresh();
+});
+
+function openInfo(g){
+  document.getElementById('infoCn').textContent = g.cn;
+  document.getElementById('infoEn').textContent = g.en;
+  document.getElementById('infoYear').textContent = g.year;
+  document.getElementById('infoPlat').textContent = g.platform;
+  document.getElementById('infoDev').textContent = g.developer;
+  document.getElementById('infoGenre').textContent = g.genre;
+  document.getElementById('infoDesc').textContent = g.desc || '暂无简介';
+  document.getElementById('videoPlayer').innerHTML = `<iframe src="${g.video}" allowfullscreen></iframe>`;
+  document.getElementById('audioPlayer').innerHTML = `<audio controls src="${g.audio}">`;
+  document.getElementById('infoPanel').classList.add('show');
+}
+function closeInfo(){
+  document.getElementById('infoPanel').classList.remove('show');
+}
+
+let startX = 0;
+const panel = document.getElementById('infoPanel');
+panel.addEventListener('touchstart', e=>{ startX = e.touches[0].clientX; });
+panel.addEventListener('touchmove', e=>{
+  const dx = e.touches[0].clientX - startX;
+  if(dx > 50) closeInfo();
+});
+
+function updatePlatformBackground(){
+  const url = platformBackground[currentPlat];
+  document.getElementById('platformBg').style.backgroundImage = `url(${url})`;
+}
+
+document.querySelectorAll('.plat-tab').forEach(tab=>{
+  tab.onclick=()=>{
+    document.querySelectorAll('.plat-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    currentPlat = tab.dataset.platform;
+    updatePlatformBackground();
+    refresh();
+  }
+});
+
+document.querySelectorAll('.view-tab').forEach(tab=>{
+  tab.onclick=()=>{
+    document.querySelectorAll('.view-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    currentView = tab.dataset.view;
+    refresh();
+  }
+});
+
+function getFilteredGames(){
+  return games.filter(g=>{
+    const matchPlatform = (currentPlat === 'all' || g.platform === currentPlat);
+    const matchKeyword = !keyword ||
+      g.cn.toLowerCase().includes(keyword) ||
+      g.en.toLowerCase().includes(keyword);
+    return matchPlatform && matchKeyword;
+  });
+}
+
+function refresh(){
+  if (!games || games.length === 0) return;
+  const color = platformColor[currentPlat] || '#ff4422';
+  document.body.style.setProperty('--accent', color);
+
+  wallView.style.display = currentView==='wall'?'block':'none';
+  timeView.style.display = currentView==='timeline'?'block':'none';
+  gridView.style.display = currentView==='grid'?'block':'none';
+
+  const list = getFilteredGames();
+  if(currentView==='wall') renderWall(list);
+  if(currentView==='timeline') renderTimeline(list);
+  if(currentView==='grid') renderGrid(list);
+}
+
+function renderWall(list){
+  wall.innerHTML='';
+  list.forEach(g=>{
+    const img=document.createElement('img');
+    img.className='cover';
+    img.src=g.cover;
+    img.onclick=()=>openInfo(g);
+    wall.appendChild(img);
+  });
+}
+
+function renderTimeline(list){
+  const yearMap={};
+  list.forEach(g=>{ const y=g.year; if(!yearMap[y])yearMap[y]=[]; yearMap[y].push(g); });
+  timeline.innerHTML='';
+  Object.keys(yearMap).sort().forEach(y=>{
+    const group=document.createElement('div');
+    group.className='year-group';
+    group.innerHTML=`<div class="year-text">${y}</div><div class="year-games"></div>`;
+    const box=group.querySelector('.year-games');
+    yearMap[y].forEach(g=>{
+      const item=document.createElement('div');
+      item.className='time-game';
+      item.innerHTML=`
+        <img class="time-cover" src="${g.cover}">
+        <div class="time-name">${g.cn}</div>
+        <span class="time-platform" style="background:${platformColor[g.platform]}">${g.platform}</span>
+      `;
+      item.onclick=()=>openInfo(g);
+      box.appendChild(item);
+    });
+    timeline.appendChild(group);
+  });
+}
+
+function renderGrid(list){
+  grid.innerHTML='';
+  list.forEach(g=>{
+    const card=document.createElement('div');
+    card.className='grid-card';
+    card.innerHTML=`
+      <img class="grid-cover" src="${g.cover}">
+      <div class="grid-info">
+        <div class="grid-name-cn">${g.cn}</div>
+        <div class="grid-name-en">${g.en}</div>
+      </div>`;
+    card.onclick=()=>openInfo(g);
+    grid.appendChild(card);
+  });
+}
+
+// 初始化
+updatePlatformBackground();
+loadGames();
+</script>
+</body>
+</html>    transition:all 0.2s;
     font-weight:600;
     white-space:nowrap; /* 防止标签文字换行 */
   }
