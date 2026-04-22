@@ -227,20 +227,21 @@
 </div>
 
 <script>
+// 替换成稳定的背景图片链接（picsum.photos 国内可访问）
 const platformBackground = {
-  all:    "https://i.imgur.com/T5nDgZK.jpg",
-  FC:     "https://i.imgur.com/FvH9XpQ.jpg",
-  SFC:    "https://i.imgur.com/KzH5R9j.jpg",
-  N64:    "https://i.imgur.com/BzJGFQH.jpg",
-  NGC:    "https://i.imgur.com/JqV8nAr.jpg",
-  Wii:    "https://i.imgur.com/2i8aXbN.jpg",
-  Switch: "https://i.imgur.com/e8XhQ9f.jpg",
-  PS1:    "https://i.imgur.com/3BdCj7A.jpg",
-  PS2:    "https://i.imgur.com/iQaYagb.jpg",
-  PSP:    "https://i.imgur.com/4sF7vKz.jpg",
-  MD:     "https://i.imgur.com/8zFg5wS.jpg",
-  DC:     "https://i.imgur.com/7vZJx1G.jpg",
-  ARC:    "https://i.imgur.com/4wZJQaX.jpg"
+  all:    "https://picsum.photos/id/111/1920/1080",
+  FC:     "https://picsum.photos/id/237/1920/1080",
+  SFC:    "https://picsum.photos/id/20/1920/1080",
+  N64:    "https://picsum.photos/id/160/1920/1080",
+  NGC:    "https://picsum.photos/id/180/1920/1080",
+  Wii:    "https://picsum.photos/id/190/1920/1080",
+  Switch: "https://picsum.photos/id/155/1920/1080",
+  PS1:    "https://picsum.photos/id/175/1920/1080",
+  PS2:    "https://picsum.photos/id/177/1920/1080",
+  PSP:    "https://picsum.photos/id/188/1920/1080",
+  MD:     "https://picsum.photos/id/169/1920/1080",
+  DC:     "https://picsum.photos/id/179/1920/1080",
+  ARC:    "https://picsum.photos/id/189/1920/1080"
 };
 
 const platformColor = {
@@ -256,14 +257,18 @@ let currentPlat = 'all';
 let currentView = 'wall';
 let keyword = '';
 
-// 从 games.json 加载数据
+// 优化加载逻辑，增加错误提示
 async function loadGames() {
   try {
     const res = await fetch('./games.json');
+    // 检查响应是否成功
+    if (!res.ok) throw new Error(`加载失败：${res.status}`);
     games = await res.json();
     refresh();
   } catch (err) {
     console.error('加载游戏数据失败', err);
+    // 给页面添加错误提示，方便排查
+    document.querySelector('.game-wall').innerHTML = `<div style="color:#fff;padding:20px;">数据加载失败：${err.message}<br>请检查 games.json 文件是否存在/格式是否正确</div>`;
   }
 }
 
@@ -348,10 +353,17 @@ function refresh(){
 
 function renderWall(list){
   wall.innerHTML='';
+  // 空数据提示
+  if(list.length === 0){
+    wall.innerHTML = '<div style="color:#fff;padding:20px;">暂无匹配的游戏</div>';
+    return;
+  }
   list.forEach(g=>{
     const img=document.createElement('img');
     img.className='cover';
-    img.src=g.cover;
+    // 封面加载失败时显示占位图
+    img.src=g.cover || "https://picsum.photos/id/21/120/160";
+    img.onerror = () => { img.src = "https://picsum.photos/id/21/120/160"; };
     img.onclick=()=>openInfo(g);
     wall.appendChild(img);
   });
@@ -361,6 +373,10 @@ function renderTimeline(list){
   const yearMap={};
   list.forEach(g=>{ const y=g.year; if(!yearMap[y])yearMap[y]=[]; yearMap[y].push(g); });
   timeline.innerHTML='';
+  if(Object.keys(yearMap).length === 0){
+    timeline.innerHTML = '<div style="color:#fff;padding:20px;">暂无匹配的游戏</div>';
+    return;
+  }
   Object.keys(yearMap).sort().forEach(y=>{
     const group=document.createElement('div');
     group.className='year-group';
@@ -370,7 +386,7 @@ function renderTimeline(list){
       const item=document.createElement('div');
       item.className='time-game';
       item.innerHTML=`
-        <img class="time-cover" src="${g.cover}">
+        <img class="time-cover" src="${g.cover || 'https://picsum.photos/id/22/100/140'}" onerror="this.src='https://picsum.photos/id/22/100/140'">
         <div class="time-name">${g.cn}</div>
         <span class="time-platform" style="background:${platformColor[g.platform]}">${g.platform}</span>
       `;
@@ -383,11 +399,15 @@ function renderTimeline(list){
 
 function renderGrid(list){
   grid.innerHTML='';
+  if(list.length === 0){
+    grid.innerHTML = '<div style="color:#fff;padding:20px;">暂无匹配的游戏</div>';
+    return;
+  }
   list.forEach(g=>{
     const card=document.createElement('div');
     card.className='grid-card';
     card.innerHTML=`
-      <img class="grid-cover" src="${g.cover}">
+      <img class="grid-cover" src="${g.cover || 'https://picsum.photos/id/23/160/240'}" onerror="this.src='https://picsum.photos/id/23/160/240'">
       <div class="grid-info">
         <div class="grid-name-cn">${g.cn}</div>
         <div class="grid-name-en">${g.en}</div>
