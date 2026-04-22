@@ -1,40 +1,125 @@
 [
-  // 任天堂 FC
   {
-    "name": "超级马里奥兄弟 3",
-    "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Super%20Mario%20Bros.%203%20(USA).png",
-    "artUrl": "https://picsum.photos/1920/1080?random=fc1",
+    "cn": "任天堂明星大乱斗",
+    "en": "Super Smash Bros. Melee",
+    "year": "2001",
+    "platform": "NGC",
+    "developer": "Sora Ltd.",
+    "genre": "格斗聚会",
+    "desc": "NGC首发大作，任天堂全明星梦幻共演，系列巅峰之作。",
+    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_GameCube/master/Named_Boxarts/Super%20Smash%20Bros.%20Melee%20(USA).png",
+    "video": "https://player.vimeo.com/video/123456789",
+    "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"
+  },
+  {
+    "cn": "阳光马里奥",
+    "en": "Super Mario Sunshine",
+    "year": "2002",
+    "platform": "NGC",
     "developer": "Nintendo",
-    "year": "1988",
-    "platform": "FC",
-    "genre": "平台动作"
+    "genre": "3D平台",
+    "desc": "NGC经典3D马里奥，以阳光海岛为舞台的冒险。",
+    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_GameCube/master/Named_Boxarts/Super%20Mario%20Sunshine%20(USA).png",
+    "video": "https://player.vimeo.com/video/123456789",
+    "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"
   },
-  // 任天堂 Switch
   {
-    "name": "塞尔达传说：王国之泪",
-    "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Switch/master/Named_Boxarts/The%20Legend%20of%20Zelda%20-%20Tears%20of%20the%20Kingdom%20(USA).png",
-    "artUrl": "https://picsum.photos/1920/1080?random=switch1",
+    "cn": "塞尔达传说 风之杖",
+    "en": "Zelda Wind Waker",
+    "year": "2003",
+    "platform": "NGC",
     "developer": "Nintendo",
-    "year": "2023",
-    "platform": "Switch",
-    "genre": "开放世界冒险"
+    "genre": "动作冒险",
+    "desc": "卡通渲染风格巅峰，大海冒险，充满童趣与史诗感。",
+    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_GameCube/master/Named_Boxarts/The%20Legend%20of%20Zelda%20-%20The%20Wind%20Waker%20(USA).png",
+    "video": "https://player.vimeo.com/video/123456789",
+    "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"
   },
-  // 索尼 PS5
   {
-    "name": "战神：诸神黄昏",
-    "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sony_-_PlayStation_5/master/Named_Boxarts/God%20of%20War%20-%20Ragnarok%20(USA).png",
-    "artUrl": "https://picsum.photos/1920/1080?random=ps51",
-    "developer": "Santa Monica Studio",
-    "year": "2022",
-    "platform": "PS5",
-    "genre": "动作冒险"
+    "cn": "生化危机4",
+    "en": "Resident Evil 4",
+    "year": "2005",
+    "platform": "NGC",
+    "developer": "Capcom",
+    "genre": "生存恐怖",
+    "desc": "划时代的越肩视角射击，NGC限时独占经典。",
+    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_GameCube/master/Named_Boxarts/Resident%20Evil%204%20(USA).png",
+    "video": "https://player.vimeo.com/video/123456789",
+    "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3"
   },
-  // 世嘉 MD
   {
-    "name": "刺猬索尼克 2",
-    "coverUrl": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_Genesis/master/Named_Boxarts/Sonic%20the%20Hedgehog%202%20(USA).png",
-    "artUrl": "https://picsum.photos/1920/1080?random=md1",
+    "cn": "刺猬索尼克",
+    "en": "Sonic the Hedgehog",
+    "year": "1991",
+    "platform": "MD",
     "developer": "Sega",
+    "genre": "平台跳跃",
+    "desc": "世嘉吉祥物出道作，高速平台游戏标杆。",
+    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_Genesis/master/Named_Boxarts/Sonic%20the%20Hedgehog%20(USA).png",
+    "video": "https://player.vimeo.com/video/123456789",
+    "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3"
+  },
+  {
+    "cn": "怒之铁拳2",
+    "en": "Streets of Rage 2",
+    "year": "1992",
+    "platform": "MD",
+    "developer": "Sega",
+    "genre": "清版动作",
+    "desc": "MD最强横版过关，音乐与手感双绝。",
+    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Mega_Drive_Genesis/master/Named_Boxarts/Streets%20of%20Rage%202%20(USA).png",
+    "video": "https://player.vimeo.com/video/123456789",
+    "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3"
+  },
+  {
+    "cn": "莎木",
+    "en": "Shenmue",
+    "year": "1999",
+    "platform": "DC",
+    "developer": "Sega",
+    "genre": "开放世界",
+    "desc": "开放世界游戏鼻祖，划时代的影像互动体验。",
+    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Dreamcast/master/Named_Boxarts/Shenmue%20(USA).png",
+    "video": "https://player.vimeo.com/video/123456789",
+    "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3"
+  },
+  {
+    "cn": "疯狂出租车",
+    "en": "Crazy Taxi",
+    "year": "2000",
+    "platform": "DC",
+    "developer": "Sega",
+    "genre": "竞速",
+    "desc": "街机移植经典，疯狂拉客狂飙。",
+    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Sega_-_Dreamcast/master/Named_Boxarts/Crazy%20Taxi%20(USA).png",
+    "video": "https://player.vimeo.com/video/123456789",
+    "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3"
+  },
+  {
+    "cn": "超级马里奥兄弟",
+    "en": "Super Mario Bros.",
+    "year": "1985",
+    "platform": "FC",
+    "developer": "Nintendo",
+    "genre": "平台跳跃",
+    "desc": "横版平台游戏开山之作。",
+    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/Super%20Mario%20Bros.%20(USA).png",
+    "video": "https://player.vimeo.com/video/123456789",
+    "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3"
+  },
+  {
+    "cn": "塞尔达传说",
+    "en": "The Legend of Zelda",
+    "year": "1986",
+    "platform": "FC",
+    "developer": "Nintendo",
+    "genre": "动作冒险",
+    "desc": "系列原点，奇幻冒险开端。",
+    "cover": "https://raw.githubusercontent.com/libretro-thumbnails/Nintendo_-_Nintendo_Entertainment_System/master/Named_Boxarts/The%20Legend%20of%20Zelda%20(USA).png",
+    "video": "https://player.vimeo.com/video/123456789",
+    "audio": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3"
+  }
+]    "developer": "Sega",
     "year": "1992",
     "platform": "MD",
     "genre": "平台动作"
