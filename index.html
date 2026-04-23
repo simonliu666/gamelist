@@ -72,13 +72,13 @@
   }
   .timeline{
     position:relative;
-    padding-left:90px;
+    padding-left:130px;
     padding-bottom:60px;
     max-width:1000px;margin:0 auto
   }
   .timeline::before{
     content:'';position:absolute;
-    left:70px;top:0;bottom:0;
+    left:80px;top:0;bottom:0;
     width:2px;background:#777;opacity:0.5;
   }
   .year-group{
@@ -87,12 +87,12 @@
   .year-mark{display:none;}
   .year-text{
     position:absolute;
-    right:25px;
+    left:15px;
     top:0;
     font-size:20px;font-weight:bold;color:#fff;
     line-height:32px;
-    text-align:right;
-    width:60px;
+    text-align:left;
+    width:50px;
   }
   .year-games{
     display:flex;flex-wrap:wrap;gap:12px;
@@ -217,8 +217,13 @@
   <div class="info-row"><span class="info-label">年份：</span><span id="infoYear"></span></div>
   <div class="info-row"><span class="info-label">平台：</span><span id="infoPlat"></span></div>
   <div class="info-row"><span class="info-label">开发商：</span><span id="infoDev"></span></div>
+  <div class="info-row"><span class="info-label">发行商：</span><span id="infoPub"></span></div>
   <div class="info-row"><span class="info-label">类型：</span><span id="infoGenre"></span></div>
-  <div class="info-row"><span class="info-label">简介：</span><span id="infoDesc"></span></div>
+  <div class="info-row"><span class="info-label">推荐度：</span><span id="infoRate"></span></div>
+  <div class="info-row"><span class="info-label">系列：</span><span id="infoSeries"></span></div>
+  <div class="info-row"><span class="info-label">备注：</span><span id="infoNote"></span></div>
+  <div class="info-row"><span class="info-label">资源链接：</span><a id="infoLink" href="#" target="_blank"></a></div>
+  <div class="info-row" style="display:flex;flex-direction:column"><span class="info-label">简介：</span><span id="infoDesc" style="margin-top:4px"></span></div>
 
   <h3 style="margin:24px 0 10px;font-size:16px">游戏视频</h3>
   <div class="video-player" id="videoPlayer"></div>
@@ -283,11 +288,55 @@ function openInfo(g){
   document.getElementById('infoEn').textContent = g.en;
   document.getElementById('infoYear').textContent = g.year;
   document.getElementById('infoPlat').textContent = g.platform;
-  document.getElementById('infoDev').textContent = g.developer;
-  document.getElementById('infoGenre').textContent = g.genre;
+  document.getElementById('infoDev').textContent = g.developer || '暂无信息';
+  document.getElementById('infoPub').textContent = g.publisher || '暂无信息';
+  document.getElementById('infoGenre').textContent = g.genre || '暂无信息';
+  document.getElementById('infoRate').textContent = g.rating || '暂无信息';
+  document.getElementById('infoSeries').textContent = g.series || '暂无信息';
+  document.getElementById('infoNote').textContent = g.note || '暂无信息';
   document.getElementById('infoDesc').textContent = g.desc || '暂无简介';
-  document.getElementById('videoPlayer').innerHTML = `<iframe src="${g.video}" allowfullscreen></iframe>`;
-  document.getElementById('audioPlayer').innerHTML = `<audio controls src="${g.audio}">`;
+
+  const linkEl = document.getElementById('infoLink');
+  if (g.resource) {
+    const urlMatch = g.resource.match(/https?:\/\/[^\s]+/);
+    if (urlMatch) {
+      linkEl.href = urlMatch[0];
+      linkEl.textContent = '点击下载';
+    } else {
+      linkEl.href = '#';
+      linkEl.textContent = g.resource;
+    }
+  } else {
+    linkEl.href = '#';
+    linkEl.textContent = '暂无资源';
+  }
+
+  const videoEl = document.getElementById('videoPlayer');
+  if (g.video) {
+    let videoSrc = g.video;
+    // Convert Bilibili URL to embed format
+    if (videoSrc.includes('bilibili.com/video/')) {
+      const bvidMatch = videoSrc.match(/BV\w+/);
+      if (bvidMatch) {
+        videoSrc = `https://player.bilibili.com/player.html?bvid=${bvidMatch[0]}&high_quality=1`;
+      }
+    }
+    if (videoSrc.startsWith('http')) {
+      videoEl.innerHTML = `<iframe src="${videoSrc}" allowfullscreen></iframe>`;
+    } else {
+      videoEl.innerHTML = `<div style="padding:20px;text-align:center;color:#888;">${g.video}</div>`;
+    }
+  } else {
+    videoEl.innerHTML = '<div style="padding:20px;text-align:center;color:#888;">暂无视频</div>';
+  }
+
+  const audioEl = document.getElementById('audioPlayer');
+  if (g.audio && g.audio.startsWith('http')) {
+    audioEl.innerHTML = `<audio controls src="${g.audio}">`;
+  } else {
+    audioEl.innerHTML = '<div style="padding:20px;text-align:center;color:#888;">暂无音乐</div>';
+  }
+
   document.getElementById('infoPanel').classList.add('show');
 }
 function closeInfo(){
