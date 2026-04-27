@@ -2,58 +2,424 @@
 <html lang="zh-CN">
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>全平台复古游戏库</title>
+<title>游戏方向键 - 全平台复古游戏库</title>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+<script src="https://hm.baidu.com/hm.js?YOUR_BAIDU_STATISTICS_ID"></script>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{font-family:system-ui,sans-serif;background:#111;color:#fff;overflow:hidden}
+  .header-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    z-index: 1001;
+    background: rgba(0,0,0,0.3);
+  }
+  
+  .site-header {
+    position: static;
+    transform: none;
+    text-align: left;
+  }
+  
+  .site-title {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+    margin: 0;
+    padding: 8px 16px;
+    background: rgba(0,0,0,0.5);
+    border-radius: 8px;
+    border: 2px solid #ff4422;
+  }
+  
+  .view-bar {
+    position: static;
+    display: flex;
+    gap: 10px;
+    flex: 1;
+    justify-content: center;
+    margin: 0 20px;
+  }
+  
+  .view-tab {
+    padding: 8px 18px;
+    background: #333;
+    border: none;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .view-tab.active {
+    background: var(--accent);
+  }
+  
+  .user-bar {
+    position: static;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .user-btn {
+    padding: 8px 16px;
+    background: #222;
+    border: 1px solid #666;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  
+  .user-btn:hover {
+    background: #333;
+  }
+  
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 16px;
+    background: #222;
+    border-radius: 20px;
+  }
+  
+  .user-email {
+    font-size: 14px;
+    color: #ddd;
+  }
+  
+  .logout-btn {
+    padding: 6px 12px;
+    background: #d32f2f;
+    border: none;
+    border-radius: 16px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+  }
+  
+  .logout-btn:hover {
+    background: #b71c1c;
+  }
 
-  .search-bar{
-    position:fixed;top:10px;left:3%;right:3%;z-index:999;
+  .auth-modal {
+    position: fixed;
+    inset: 0;
+    background: #000a;
+    z-index: 2000;
+    display: none;
+    align-items: center;
+    justify-content: center;
   }
-  #searchInput{
-    width:100%;padding:10px 16px;border-radius:20px;
-    background:#222;border:none;outline:none;
-    color:#fff;font-size:15px;
+  
+  .auth-modal.show {
+    display: flex;
+  }
+  
+  .auth-box {
+    background: #1a1a1a;
+    border-radius: 16px;
+    padding: 32px;
+    width: min(90vw, 380px);
+    box-shadow: 0 8px 32px #0008;
+  }
+  
+  .auth-title {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .auth-input {
+    width: 100%;
+    padding: 12px 16px;
+    margin: 8px 0 16px;
+    background: #2a2a2a;
+    border: 1px solid #444;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+  }
+  
+  .auth-input:focus {
+    border-color: var(--accent);
+  }
+  
+  .auth-submit {
+    width: 100%;
+    padding: 12px;
+    background: var(--accent);
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .auth-submit:hover {
+    opacity: 0.9;
+  }
+  
+  .auth-switch {
+    margin-top: 16px;
+    text-align: center;
+    font-size: 14px;
+    color: #888;
+  }
+  
+  .auth-switch a {
+    color: var(--accent);
+    cursor: pointer;
+    text-decoration: underline;
+  }
+  
+  .auth-error {
+    color: #ff4444;
+    font-size: 13px;
+    margin-bottom: 12px;
+    text-align: center;
   }
 
-  .platform-bar{
-    position:fixed;top:60px;left:3%;right:3%;
-    display:flex;gap:10px;overflow-x:auto;scrollbar-width:none;
-    padding-bottom:6px;z-index:998
+  .favorite-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 20px;
+    background: #2a2a2a;
+    border: 1px solid #666;
+    border-radius: 20px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    margin-top: 10px;
+    transition: all .2s;
   }
-  .platform-bar::-webkit-scrollbar{display:none}
-  .plat-tab{
-    padding:8px 16px;background:#222;border:1px solid #666;
-    border-radius:20px;white-space:nowrap;cursor:pointer;flex-shrink:0
+  
+  .favorite-btn:hover {
+    background: #333;
   }
-  .plat-tab.active{
-    background:var(--accent);border-color:var(--accent)
+  
+  .favorite-btn.active {
+    background: #e60012;
+    border-color: #e60012;
+  }
+  
+  .favorite-btn.active .fav-icon {
+    color: #fff;
+  }
+  
+  .fav-icon {
+    font-size: 18px;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: system-ui, sans-serif;
+    background: #111;
+    color: #fff;
+    overflow: hidden;
   }
 
-  .view-bar{
-    position:fixed;top:105px;left:3%;right:3%;
-    display:flex;gap:10px;z-index:997
+  .search-bar {
+    position: fixed;
+    top: 90px;
+    left: 3%;
+    right: 3%;
+    z-index: 999;
+    display: none;
   }
-  .view-tab{
-    padding:8px 18px;background:#333;border:none;
-    border-radius:20px;color:#fff;cursor:pointer
+  
+  #searchInput {
+    width: 100%;
+    padding: 10px 16px;
+    border-radius: 20px;
+    background: #222;
+    border: none;
+    outline: none;
+    color: #fff;
+    font-size: 15px;
   }
-  .view-tab.active{background:var(--accent)}
+
+  .platform-bar {
+    position: fixed;
+    top: 150px;
+    left: 3%;
+    right: 3%;
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 6px;
+    z-index: 998;
+  }
+  
+  .platform-bar::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .filter-bar {
+    position: fixed;
+    left: 3%;
+    right: 3%;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 997;
+    display: none;
+  }
+  
+  .filter-all {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+  }
+  
+  .filter-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 4px 0;
+    min-width: 0;
+  }
+  
+  .filter-content::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .platform-filter {
+    top: 140px;
+  }
+  
+  .genre-filter {
+    top: 190px;
+  }
+  
+  .year-filter {
+    top: 240px;
+  }
+  
+  .filter-arrow {
+    width: 30px;
+    height: 36px;
+    background: #222;
+    border: 1px solid #666;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .filter-arrow:hover {
+    background: #333;
+  }
+  
+  .filter-content {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding: 4px 0;
+  }
+  
+  .filter-content::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .filter-items {
+    display: flex;
+    gap: 10px;
+    flex-shrink: 0;
+    min-width: max-content;
+  }
+  
+  .filter-arrow.left {
+    margin: 0 5px;
+    flex-shrink: 0;
+  }
+  
+  .filter-content {
+    min-width: 0;
+  }
+  
+  .filter-items {
+    width: auto;
+  }
+  
+  .plat-tab, .genre-tab, .year-tab {
+    padding: 8px 16px;
+    background: #222;
+    border: 1px solid #666;
+    border-radius: 20px;
+    white-space: nowrap;
+    cursor: pointer;
+    flex-shrink: 0;
+  }
+  
+  .plat-tab.active, .genre-tab.active, .year-tab.active {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
 
   .platform-bg{
-    position:fixed;inset:0;
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-    filter:brightness(0.25) saturate(1.2);
-    z-index:-2;
-    transition:background-image 0.6s ease;
+    display:none;
   }
   .overlay{
     position:fixed;inset:0;background:#000a;z-index:-1
   }
 
   .wall-view{display:none}
+  .recommend-area{
+    position:fixed;top:100px;left:3%;right:3%;bottom:5%;
+    overflow-y:auto;scrollbar-width:none
+  }
+  .recommend-area::-webkit-scrollbar{display:none}
+  .recommend-title{
+    font-size:24px;font-weight:bold;color:#fff;margin-bottom:20px;
+    text-align:center
+  }
+  .recommend-list{
+    display:flex;flex-direction:column;gap:20px
+  }
+  .recommend-card{
+    display:flex;gap:20px;background:#181818;border-radius:12px;
+    padding:20px;cursor:pointer;transition:.2s
+  }
+  .recommend-card:hover{background:#222}
+  .recommend-cover{
+    width:160px;height:220px;object-fit:cover;border-radius:8px;flex-shrink:0
+  }
+  .recommend-detail{
+    flex:1;display:flex;flex-direction:column;gap:10px
+  }
+  .recommend-name{font-size:20px;font-weight:bold}
+  .recommend-meta{display:flex;flex-wrap:wrap;gap:10px;color:#aaa;font-size:14px}
+  .recommend-meta span{background:#2a2a2a;padding:4px 10px;border-radius:6px}
+  .recommend-desc{color:#ccc;line-height:1.6;font-size:14px;flex:1}
   .game-wall{
     position:fixed;bottom:5%;left:3%;right:3%;
     display:flex;gap:10px;overflow-x:auto;scrollbar-width:none
@@ -65,82 +431,39 @@
   }
   .cover:hover{transform:scale(1.08);box-shadow:0 0 12px #fff8}
 
-  .timeline-view{display:none}
-  .timeline-view{
-    position:fixed;top:160px;left:3%;right:3%;bottom:3%;
-    overflow-y:auto;scrollbar-width:none
-  }
-  .timeline{
-    position:relative;
-    padding-left:130px;
-    padding-bottom:60px;
-    max-width:1000px;margin:0 auto
-  }
-  .timeline::before{
-    content:'';position:absolute;
-    left:80px;top:0;bottom:0;
-    width:2px;background:#777;opacity:0.5;
-  }
-  .year-group{
-    position:relative;margin-bottom:40px;
-  }
-  .year-mark{display:none;}
-  .year-text{
-    position:absolute;
-    left:15px;
-    top:0;
-    font-size:20px;font-weight:bold;color:#fff;
-    line-height:32px;
-    text-align:left;
-    width:50px;
-  }
-  .year-games{
-    display:flex;flex-wrap:wrap;gap:12px;
-    margin-top:0;
-    padding-left:15px;
-  }
-  .time-game{
-    width:100px;text-align:center;cursor:pointer
-  }
-  .time-cover{
-    width:100px;height:140px;object-fit:cover;border-radius:6px
-  }
-  .time-name{
-    font-size:12px;margin-top:4px;color:#eee;line-height:1.2;
-  }
-  .time-platform{
-    display:inline-block;
-    margin-top:4px;
-    padding:2px 6px;
-    border-radius:6px;
-    font-size:10px;
-    color:#fff;
-  }
+  
 
   .grid-view{display:none}
   .grid-view{
-    position:fixed;top:160px;left:3%;right:3%;bottom:3%;
+    position:fixed;top:290px;left:3%;right:3%;bottom:3%;
     overflow-y:auto;scrollbar-width:none
   }
   .grid-container{
     display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+    grid-template-columns:repeat(auto-fill,minmax(100px,1fr));
     gap:16px;padding-bottom:40px
   }
   .grid-card{
-    border-radius:10px;background:#181818;overflow:hidden;
-    cursor:pointer;transition:.2s
+    text-align:center;cursor:pointer
   }
-  .grid-card:hover{transform:scale(1.03)}
-  .grid-cover{width:100%;aspect-ratio:2/3;object-fit:cover}
+  .grid-cover{width:100px;height:140px;object-fit:cover;border-radius:6px}
   .grid-info{padding:8px}
-  .grid-name-cn{font-size:14px;font-weight:500}
-  .grid-name-en{font-size:12px;color:#aaa}
+  .grid-name-cn{font-size:12px;margin-top:4px;color:#eee;line-height:1.2}
+  .grid-name-en{font-size:10px;color:#aaa}
+  .grid-platform{display:inline-block;margin-top:4px;padding:2px 8px;border-radius:10px;font-size:10px;background:#e60012}
+  .grid-platform.FC{background:#e60012}
+  .grid-platform.SFC{background:#e60012}
+  .grid-platform.PS1{background:#e60012}
+  .grid-platform.N64{background:#e60012}
+  .grid-platform.GBA{background:#e60012}
+  .grid-platform.GB{background:#e60012}
+  .grid-platform.DC{background:#e60012}
+  .grid-platform.PSP{background:#e60012}
 
   .info-panel{
     position:fixed;right:-600px;top:0;bottom:0;
     width:min(90vw,580px);background:#141414;
-    box-shadow:-4px 0 20px #0006;z-index:1000;
+    box-shadow:-4px 0 20px #0006;z-index:1002;
     padding:30px;overflow-y:auto;scrollbar-width:none;
     transition:right 0.3s ease-out;
     touch-action:pan-x;
@@ -166,48 +489,123 @@
   .video-player iframe{width:100%;height:100%;border:none}
   .audio-player{width:100%;margin:20px 0}
   audio{width:100%}
+  
+  .info-overlay{
+    position:fixed;inset:0;background:#0008;z-index:999;
+    display:none
+  }
+  .info-overlay.show{display:block}
 </style>
 
 <body>
 <div class="platform-bg" id="platformBg"></div>
 <div class="overlay"></div>
 
-<div class="search-bar">
+<div class="header-container">
+  <div class="site-header">
+    <h1 class="site-title">游戏方向键</h1>
+  </div>
+  
+  <div class="view-bar">
+    <button class="view-tab active" data-view="wall">好游推荐</button>
+    <button class="view-tab" data-view="grid">游戏墙</button>
+    <button class="view-tab" data-view="favorites">我的收藏</button>
+  </div>
+  
+  <div class="user-bar">
+    <div class="game-count" id="gameCount" style="padding: 8px 16px; background: #222; border: 1px solid #666; border-radius: 20px; color: #fff; font-size: 14px;">游戏数量: 0</div>
+  </div>
+</div>
+
+<div class="info-overlay" id="infoOverlay" onclick="closeInfo()"></div>
+
+
+
+<div class="search-bar" id="searchBar">
   <input id="searchInput" placeholder="搜索游戏中文名、英文名..." type="text">
 </div>
 
-<div class="platform-bar">
-  <div class="plat-tab active" data-platform="all">全部平台</div>
-  <div class="plat-tab" data-platform="FC">FC</div>
-  <div class="plat-tab" data-platform="SFC">SFC</div>
-  <div class="plat-tab" data-platform="N64">N64</div>
-  <div class="plat-tab" data-platform="NGC">NGC</div>
-  <div class="plat-tab" data-platform="Wii">Wii</div>
-  <div class="plat-tab" data-platform="Switch">Switch</div>
-  <div class="plat-tab" data-platform="PS1">PS1</div>
-  <div class="plat-tab" data-platform="PS2">PS2</div>
-  <div class="plat-tab" data-platform="PSP">PSP</div>
-  <div class="plat-tab" data-platform="MD">MD</div>
-  <div class="plat-tab" data-platform="DC">DC</div>
-  <div class="plat-tab" data-platform="ARC">街机</div>
+<div class="filter-bar platform-filter" id="platformFilter">
+  <div class="filter-all">
+    <div class="plat-tab active" data-platform="all">全部平台</div>
+    <button class="filter-arrow left" onclick="scrollFilterBar(this, 'left')">&lt;</button>
+  </div>
+  <div class="filter-content">
+    <div class="filter-items">
+      <div class="plat-tab" data-platform="FC">FC</div>
+      <div class="plat-tab" data-platform="SFC">SFC</div>
+      <div class="plat-tab" data-platform="N64">N64</div>
+      <div class="plat-tab" data-platform="NGC">NGC</div>
+      <div class="plat-tab" data-platform="Wii">Wii</div>
+      <div class="plat-tab" data-platform="Switch">Switch</div>
+      <div class="plat-tab" data-platform="PS1">PS1</div>
+      <div class="plat-tab" data-platform="PS2">PS2</div>
+      <div class="plat-tab" data-platform="PSP">PSP</div>
+      <div class="plat-tab" data-platform="MD">MD</div>
+      <div class="plat-tab" data-platform="DC">DC</div>
+      <div class="plat-tab" data-platform="ARC">街机</div>
+    </div>
+  </div>
+  <button class="filter-arrow right" onclick="scrollFilterBar(this, 'right')">&gt;</button>
 </div>
 
-<div class="view-bar">
-  <button class="view-tab active" data-view="wall">平台视图</button>
-  <button class="view-tab" data-view="timeline">时间线</button>
-  <button class="view-tab" data-view="grid">网格平铺</button>
+<div class="filter-bar genre-filter" id="genreFilter">
+  <div class="filter-all">
+    <div class="genre-tab active" data-genre="all">全部类型</div>
+    <button class="filter-arrow left" onclick="scrollFilterBar(this, 'left')">&lt;</button>
+  </div>
+  <div class="filter-content">
+    <div class="filter-items">
+      <div class="genre-tab" data-genre="动作">动作</div>
+      <div class="genre-tab" data-genre="冒险">冒险</div>
+      <div class="genre-tab" data-genre="角色扮演">角色扮演</div>
+      <div class="genre-tab" data-genre="射击">射击</div>
+      <div class="genre-tab" data-genre="赛车">赛车</div>
+      <div class="genre-tab" data-genre="格斗">格斗</div>
+      <div class="genre-tab" data-genre="策略">策略</div>
+      <div class="genre-tab" data-genre="模拟">模拟</div>
+      <div class="genre-tab" data-genre="休闲">休闲</div>
+      <div class="genre-tab" data-genre="体育">体育</div>
+      <div class="genre-tab" data-genre="音乐">音乐</div>
+      <div class="genre-tab" data-genre="puzzle">益智</div>
+    </div>
+  </div>
+  <button class="filter-arrow right" onclick="scrollFilterBar(this, 'right')">&gt;</button>
+</div>
+
+<div class="filter-bar year-filter" id="yearFilter">
+  <div class="filter-all">
+    <div class="year-tab active" data-year="all">全部年份</div>
+    <button class="filter-arrow left" onclick="scrollFilterBar(this, 'left')">&lt;</button>
+  </div>
+  <div class="filter-content">
+    <div class="filter-items" id="yearFilterItems">
+      <!-- 年份将通过JavaScript动态生成 -->
+    </div>
+  </div>
+  <button class="filter-arrow right" onclick="scrollFilterBar(this, 'right')">&gt;</button>
 </div>
 
 <div class="wall-view" id="wallView">
-  <div class="game-wall" id="wall"></div>
+  <div class="recommend-area" id="recommendArea">
+    <div style="display:flex;justify-content:center;margin-bottom:20px;">
+      <button class="user-btn" id="randomBtn" onclick="randomizeRecommend()">🎲 随机给我来10个好游戏！</button>
+    </div>
+    <div class="recommend-list" id="recommendList"></div>
+  </div>
 </div>
 
-<div class="timeline-view" id="timeView">
-  <div class="timeline" id="timeline"></div>
-</div>
+
 
 <div class="grid-view" id="gridView">
   <div class="grid-container" id="grid"></div>
+</div>
+
+<div class="grid-view" id="favoritesView">
+  <div class="favorites-header" style="padding:20px;text-align:center;">
+    <p style="color:#aaa;font-size:14px;" id="favoritesEmpty">登录后查看收藏的游戏</p>
+  </div>
+  <div class="grid-container" id="favoritesGrid"></div>
 </div>
 
 <div class="info-panel" id="infoPanel">
@@ -224,6 +622,10 @@
   <div class="info-row"><span class="info-label">备注：</span><span id="infoNote"></span></div>
   <div class="info-row"><span class="info-label">资源链接：</span><a id="infoLink" href="#" target="_blank"></a></div>
   <div class="info-row" style="display:flex;flex-direction:column"><span class="info-label">简介：</span><span id="infoDesc" style="margin-top:4px"></span></div>
+  <button class="favorite-btn" id="favoriteBtn" onclick="toggleFavorite()">
+    <span class="fav-icon" id="favIcon">♡</span>
+    <span id="favText">收藏</span>
+  </button>
 
   <h3 style="margin:24px 0 10px;font-size:16px">游戏视频</h3>
   <div class="video-player" id="videoPlayer"></div>
@@ -232,7 +634,121 @@
 </div>
 
 <script>
-// 替换成稳定的背景图片链接（picsum.photos 国内可访问）
+let userFavorites = new Set();
+let currentGameId = null;
+let currentPlat = 'all';
+let currentYear = 'all';
+let currentGenre = 'all';
+let currentView = 'wall';
+let keyword = '';
+let games = [];
+let dailyRecommend = [];
+let allYears = [];
+
+// 视图元素
+const wallView = document.getElementById('wallView');
+const gridView = document.getElementById('gridView');
+const favoritesView = document.getElementById('favoritesView');
+const grid = document.getElementById('grid');
+
+function loadUserFavorites() {
+  try {
+    const favorites = localStorage.getItem('favorites');
+    if (favorites) {
+      userFavorites = new Set(JSON.parse(favorites));
+      updateFavoriteButton();
+    }
+  } catch (err) {
+    console.error('加载收藏失败', err);
+    userFavorites = new Set();
+  }
+}
+
+function saveUserFavorites() {
+  try {
+    localStorage.setItem('favorites', JSON.stringify(Array.from(userFavorites)));
+    // 重新渲染收藏页面
+    if (currentView === 'favorites') {
+      renderFavorites();
+    }
+  } catch (err) {
+    console.error('保存收藏失败', err);
+  }
+}
+
+function toggleFavorite() {
+  if (!currentGameId) return;
+
+  if (userFavorites.has(currentGameId)) {
+    userFavorites.delete(currentGameId);
+  } else {
+    userFavorites.add(currentGameId);
+  }
+
+  updateFavoriteButton();
+  saveUserFavorites();
+}
+
+function updateFavoriteButton() {
+  const btn = document.getElementById('favoriteBtn');
+  const icon = document.getElementById('favIcon');
+  const text = document.getElementById('favText');
+
+  if (currentGameId && userFavorites.has(currentGameId)) {
+    btn.classList.add('active');
+    icon.textContent = '♥';
+    text.textContent = '已收藏';
+  } else {
+    btn.classList.remove('active');
+    icon.textContent = '♡';
+    text.textContent = '收藏';
+  }
+}
+
+function scrollFilterBar(arrow, direction) {
+  const filterBar = arrow.closest('.filter-bar');
+  const filterContent = filterBar.querySelector('.filter-content');
+  const scrollAmount = direction === 'left' ? -300 : 300;
+  
+  if (filterContent) {
+    filterContent.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+  }
+  
+  // 检查是否滚动到最前面，隐藏/显示左侧箭头
+  updateArrowVisibility(filterBar);
+}
+
+function updateArrowVisibility(filterBar) {
+  const content = filterBar.querySelector('.filter-content');
+  const leftArrow = filterBar.querySelector('.filter-arrow.left');
+  
+  if (leftArrow && content) {
+    // 当滚动位置为0时，隐藏左侧箭头
+    if (content.scrollLeft === 0) {
+      leftArrow.style.display = 'none';
+    } else {
+      leftArrow.style.display = 'flex';
+    }
+  }
+}
+
+// 为所有筛选栏添加滚动事件监听器
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.filter-bar').forEach(bar => {
+    const content = bar.querySelector('.filter-items') || bar.querySelector('.filter-content');
+    if (content) {
+      content.addEventListener('scroll', function() {
+        updateArrowVisibility(bar);
+      });
+      // 初始检查箭头可见性
+      updateArrowVisibility(bar);
+    }
+  });
+});
+
+// 页面加载时加载收藏数据
+loadUserFavorites();
+
 const platformBackground = {
   all:    "https://picsum.photos/id/111/1920/1080",
   FC:     "https://picsum.photos/id/237/1920/1080",
@@ -251,31 +767,90 @@ const platformBackground = {
 
 const platformColor = {
   FC:'#e60012',SFC:'#e60012',N64:'#e60012',NGC:'#e60012',Wii:'#e60012',Switch:'#e60012',
-  PS1:'#003791',PS2:'#003791',PSP:'#003791',
-  MD:'#001ea8',DC:'#001ea8',
-  ARC:'#777',
-  all:'#ff4422'
+  PS1:'#e60012',PS2:'#e60012',PSP:'#e60012',
+  MD:'#e60012',DC:'#e60012',
+  ARC:'#e60012',
+  all:'#e60012'
 };
 
-let games = [];
-let currentPlat = 'all';
-let currentView = 'wall';
-let keyword = '';
+function getRandomGames(list, count) {
+  if (!Array.isArray(list)) {
+    console.warn('getRandomGames: list 不是数组，返回空数组');
+    return [];
+  }
+  const shuffled = [...list];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled.slice(0, count);
+}
 
-// 优化加载逻辑，增加错误提示
+function generateYearFilters() {
+  // 提取所有唯一的年份
+  const yearSet = new Set();
+  if (Array.isArray(games)) {
+    games.forEach(game => {
+      if (game.year && game.year.length === 4 && !isNaN(game.year)) {
+        yearSet.add(game.year);
+      }
+    });
+  }
+  
+  // 按年份排序
+  allYears = Array.from(yearSet).sort((a, b) => parseInt(b) - parseInt(a));
+  
+  // 生成年份筛选按钮
+  const yearFilterItems = document.getElementById('yearFilterItems');
+  if (yearFilterItems) {
+    yearFilterItems.innerHTML = '';
+    
+    // 添加年份按钮
+    allYears.forEach(year => {
+      const yearButton = document.createElement('div');
+      yearButton.className = 'year-tab';
+      yearButton.dataset.year = year;
+      yearButton.textContent = year;
+      yearFilterItems.appendChild(yearButton);
+    });
+    
+    // 添加年份筛选事件处理
+    document.querySelectorAll('.year-tab').forEach(tab => {
+      tab.onclick = () => {
+        document.querySelectorAll('.year-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        currentYear = tab.dataset.year;
+        refresh();
+      };
+    });
+  }
+}
+
 async function loadGames() {
   try {
-    const res = await fetch('./games.json');
-    // 检查响应是否成功
+    const timestamp = new Date().getTime();
+    const res = await fetch(`./games.json?timestamp=${timestamp}`);
     if (!res.ok) throw new Error(`加载失败：${res.status}`);
-    games = await res.json();
+    const data = await res.json();
+    if (typeof data !== 'object' || data === null) {
+      throw new Error('数据格式错误：不是有效的对象');
+    }
+    games = Array.isArray(data.games) ? data.games : [];
+    dailyRecommend = getRandomGames(games, 10);
+    
+    // 生成年份筛选按钮
+    generateYearFilters();
+    
     refresh();
   } catch (err) {
     console.error('加载游戏数据失败', err);
-    // 给页面添加错误提示，方便排查
-    document.querySelector('.game-wall').innerHTML = `<div style="color:#fff;padding:20px;">数据加载失败：${err.message}<br>请检查 games.json 文件是否存在/格式是否正确</div>`;
+    const recommendList = document.getElementById('recommendList');
+    if (recommendList) {
+      recommendList.innerHTML = `<div style="color:#fff;padding:20px;text-align:center;">数据加载失败：${err.message}</div>`;
+    }
   }
 }
+
 
 const searchInput = document.getElementById('searchInput');
 searchInput.addEventListener('input', e=>{
@@ -284,6 +859,7 @@ searchInput.addEventListener('input', e=>{
 });
 
 function openInfo(g){
+  currentGameId = g.platform + '_' + g.cn;
   document.getElementById('infoCn').textContent = g.cn;
   document.getElementById('infoEn').textContent = g.en;
   document.getElementById('infoYear').textContent = g.year;
@@ -314,7 +890,6 @@ function openInfo(g){
   const videoEl = document.getElementById('videoPlayer');
   if (g.video) {
     let videoSrc = g.video;
-    // Convert Bilibili URL to embed format
     if (videoSrc.includes('bilibili.com/video/')) {
       const bvidMatch = videoSrc.match(/BV\w+/);
       if (bvidMatch) {
@@ -338,9 +913,12 @@ function openInfo(g){
   }
 
   document.getElementById('infoPanel').classList.add('show');
+  updateFavoriteButton();
+  document.getElementById('infoOverlay').classList.add('show');
 }
 function closeInfo(){
   document.getElementById('infoPanel').classList.remove('show');
+  document.getElementById('infoOverlay').classList.remove('show');
 }
 
 let startX = 0;
@@ -355,15 +933,34 @@ function updatePlatformBackground(){
   const url = platformBackground[currentPlat];
   document.getElementById('platformBg').style.backgroundImage = `url(${url})`;
 }
-
-document.querySelectorAll('.plat-tab').forEach(tab=>{
+document.querySelectorAll('.platform-filter .plat-tab').forEach(tab=>{
   tab.onclick=()=>{
-    document.querySelectorAll('.plat-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.platform-filter .plat-tab').forEach(t=>t.classList.remove('active'));
     tab.classList.add('active');
     currentPlat = tab.dataset.platform;
     updatePlatformBackground();
     refresh();
   }
+});
+
+// 游戏类型筛选事件处理
+document.querySelectorAll('.genre-tab').forEach(tab=>{
+  tab.onclick=()=>{
+    document.querySelectorAll('.genre-tab').forEach(t=>t.classList.remove('active'));
+    tab.classList.add('active');
+    currentGenre = tab.dataset.genre;
+    refresh();
+  }
+});
+
+// 年份筛选事件处理
+document.querySelectorAll('.year-tab').forEach(tab=>{
+  tab.onclick = () => {
+    document.querySelectorAll('.year-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    currentYear = tab.dataset.year;
+    refresh();
+  };
 });
 
 document.querySelectorAll('.view-tab').forEach(tab=>{
@@ -375,100 +972,91 @@ document.querySelectorAll('.view-tab').forEach(tab=>{
   }
 });
 
-function getFilteredGames(){
-  return games.filter(g=>{
-    const matchPlatform = (currentPlat === 'all' || g.platform === currentPlat);
-    const matchKeyword = !keyword ||
-      g.cn.toLowerCase().includes(keyword) ||
-      g.en.toLowerCase().includes(keyword);
-    return matchPlatform && matchKeyword;
-  });
-}
+function getFilteredGames(){  if (!Array.isArray(games)) {    return [];  }  return games.filter(g=>{    const matchPlatform = (currentPlat === 'all' || g.platform === currentPlat);    const matchKeyword = !keyword ||      g.cn.toLowerCase().includes(keyword) ||      g.en.toLowerCase().includes(keyword);    const matchYear = (currentYear === 'all' || g.year === currentYear);    const matchGenre = (currentGenre === 'all' ||       (g.genre && g.genre.split(',').some(genre =>         genre.trim() === currentGenre      )));    return matchPlatform && matchKeyword && matchYear && matchGenre;  });}
 
-function refresh(){
-  if (!games || games.length === 0) return;
-  const color = platformColor[currentPlat] || '#ff4422';
-  document.body.style.setProperty('--accent', color);
+function refresh(){  if (!games || games.length === 0) return;  const color = platformColor[currentPlat] || '#ff4422';  document.body.style.setProperty('--accent', color);
 
-  wallView.style.display = currentView==='wall'?'block':'none';
-  timeView.style.display = currentView==='timeline'?'block':'none';
-  gridView.style.display = currentView==='grid'?'block':'none';
+  wallView.style.display = currentView==='wall'?'block':'none';  gridView.style.display = currentView==='grid'?'block':'none';  favoritesView.style.display = currentView==='favorites'?'block':'none';
 
-  const list = getFilteredGames();
-  if(currentView==='wall') renderWall(list);
-  if(currentView==='timeline') renderTimeline(list);
-  if(currentView==='grid') renderGrid(list);
-}
+  // 根据当前视图显示或隐藏搜索框和筛选栏
+  const searchBar = document.getElementById('searchBar');
+  const platformFilter = document.getElementById('platformFilter');
+  const genreFilter = document.getElementById('genreFilter');
+  const yearFilter = document.getElementById('yearFilter');
+  
+  if (currentView === 'grid') {
+    searchBar.style.display = 'block';
+    platformFilter.style.display = 'flex';
+    genreFilter.style.display = 'flex';
+    yearFilter.style.display = 'flex';
+  } else {
+    searchBar.style.display = 'none';
+    platformFilter.style.display = 'none';
+    genreFilter.style.display = 'none';
+    yearFilter.style.display = 'none';
+  }
+
+  const list = getFilteredGames();  
+  
+  // 更新游戏数量显示
+  const gameCountElement = document.getElementById('gameCount');
+  if (gameCountElement) {
+    let count = 0;
+    if (currentView === 'favorites') {
+      count = userFavorites.size;
+    } else {
+      count = list.length;
+    }
+    gameCountElement.textContent = `游戏数量: ${count}`;
+  }
+  
+  if(currentView==='wall') renderWall(list);  if(currentView==='grid') renderGrid(list);  if(currentView==='favorites') renderFavorites();}
 
 function renderWall(list){
-  wall.innerHTML='';
-  // 空数据提示
-  if(list.length === 0){
-    wall.innerHTML = '<div style="color:#fff;padding:20px;">暂无匹配的游戏</div>';
-    return;
-  }
-  list.forEach(g=>{
-    const img=document.createElement('img');
-    img.className='cover';
-    // 封面加载失败时显示占位图
-    img.src=g.cover || "https://picsum.photos/id/21/120/160";
-    img.onerror = () => { img.src = "https://picsum.photos/id/21/120/160"; };
-    img.onclick=()=>openInfo(g);
-    wall.appendChild(img);
-  });
-}
-
-function renderTimeline(list){
-  const yearMap={};
-  list.forEach(g=>{ const y=g.year; if(!yearMap[y])yearMap[y]=[]; yearMap[y].push(g); });
-  timeline.innerHTML='';
-  if(Object.keys(yearMap).length === 0){
-    timeline.innerHTML = '<div style="color:#fff;padding:20px;">暂无匹配的游戏</div>';
-    return;
-  }
-  Object.keys(yearMap).sort().forEach(y=>{
-    const group=document.createElement('div');
-    group.className='year-group';
-    group.innerHTML=`<div class="year-text">${y}</div><div class="year-games"></div>`;
-    const box=group.querySelector('.year-games');
-    yearMap[y].forEach(g=>{
-      const item=document.createElement('div');
-      item.className='time-game';
-      item.innerHTML=`
-        <img class="time-cover" src="${g.cover || 'https://picsum.photos/id/22/100/140'}" onerror="this.src='https://picsum.photos/id/22/100/140'">
-        <div class="time-name">${g.cn}</div>
-        <span class="time-platform" style="background:${platformColor[g.platform]}">${g.platform}</span>
+  const recommendList = document.getElementById('recommendList');
+  recommendList.innerHTML='';
+  if(dailyRecommend.length === 0){
+    recommendList.innerHTML = '<div style="color:#fff;padding:20px;text-align:center;">暂无推荐游戏</div>';
+  } else {
+    dailyRecommend.forEach(g=>{
+      const card=document.createElement('div');
+      card.className='recommend-card';
+      card.innerHTML=`
+        <img class="recommend-cover" src="${g.cover || 'https://picsum.photos/id/23/160/240'}" onerror="this.src='https://picsum.photos/id/23/160/240'">
+        <div class="recommend-detail">
+          <div class="recommend-name">${g.cn}</div>
+          <div class="recommend-meta">
+            <span>${g.year}</span>
+            <span>${g.platform}</span>
+            <span>${g.genre || '暂无类型'}</span>
+            <span>⭐ ${g.rating || '暂无评分'}</span>
+            <span>开发商：${g.developer || '暂无'}</span>
+            <span>发行商：${g.publisher || '暂无'}</span>
+            ${g.series ? `<span>系列：${g.series}</span>` : ''}
+          </div>
+          <div class="recommend-desc">${g.desc || '暂无简介'}</div>
+        </div>
       `;
-      item.onclick=()=>openInfo(g);
-      box.appendChild(item);
+      card.onclick=()=>openInfo(g);
+      recommendList.appendChild(card);
     });
-    timeline.appendChild(group);
-  });
-}
-
-function renderGrid(list){
-  grid.innerHTML='';
-  if(list.length === 0){
-    grid.innerHTML = '<div style="color:#fff;padding:20px;">暂无匹配的游戏</div>';
-    return;
   }
-  list.forEach(g=>{
-    const card=document.createElement('div');
-    card.className='grid-card';
-    card.innerHTML=`
-      <img class="grid-cover" src="${g.cover || 'https://picsum.photos/id/23/160/240'}" onerror="this.src='https://picsum.photos/id/23/160/240'">
-      <div class="grid-info">
-        <div class="grid-name-cn">${g.cn}</div>
-        <div class="grid-name-en">${g.en}</div>
-      </div>`;
-    card.onclick=()=>openInfo(g);
-    grid.appendChild(card);
-  });
 }
 
-// 初始化
-updatePlatformBackground();
-loadGames();
+
+
+function renderGrid(list){  grid.innerHTML='';  if(list.length === 0){    grid.innerHTML = '<div style="color:#fff;padding:20px;">暂无匹配的游戏</div>';    return;  }  list.forEach(g=>{    const card=document.createElement('div');    card.className='grid-card';    card.innerHTML=`      <img class="grid-cover" src="${g.cover || 'https://picsum.photos/id/23/160/240'}" onerror="this.src='https://picsum.photos/id/23/160/240'">      <div class="grid-info">        <div class="grid-name-cn">${g.cn}</div>      </div>`;    card.onclick=()=>openInfo(g);    grid.appendChild(card);  });}function randomizeRecommend() {
+  dailyRecommend = getRandomGames(games, 10);
+  renderWall(getFilteredGames());
+}
+
+function renderFavorites(){  const favoritesGrid = document.getElementById('favoritesGrid');  const favoritesEmpty = document.getElementById('favoritesEmpty');  favoritesGrid.innerHTML='';  if(userFavorites.size === 0){    favoritesEmpty.style.display = 'block';    favoritesEmpty.textContent = '还没有收藏任何游戏';    favoritesGrid.style.display = 'none';  } else {    favoritesEmpty.style.display = 'none';    favoritesGrid.style.display = 'grid';    const favoriteGames = Array.isArray(games) ? games.filter(g => {      const gameId = g.platform + '_' + g.cn;      return userFavorites.has(gameId);    }) : [];    favoriteGames.forEach(g=>{      const card=document.createElement('div');      card.className='grid-card';      card.innerHTML=`
+        <img class="grid-cover" src="${g.cover || 'https://picsum.photos/id/22/100/140'}" onerror="this.src='https://picsum.photos/id/22/100/140'">
+        <div class="grid-info">
+          <div class="grid-name-cn">${g.cn}</div>
+          <span class="grid-platform" style="background:${platformColor[g.platform]}">${g.platform}</span>
+        </div>
+      `;      card.onclick=()=>openInfo(g);      favoritesGrid.appendChild(card);    });  }}updatePlatformBackground();loadGames();
 </script>
 </body>
 </html>
